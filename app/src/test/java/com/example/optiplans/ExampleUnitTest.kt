@@ -1,5 +1,6 @@
 package com.example.optiplans
 
+import com.example.optiplans.entities.Column
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -12,6 +13,8 @@ import org.junit.Assert.*
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
+        val c = Column("abcd", "efgh", null)
+        println(c.nameOfColumn)
         assertEquals(4, 2 + 2)
     }
 }

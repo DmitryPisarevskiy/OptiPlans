@@ -1,4 +1,7 @@
 package com.example.optiplans.entities
 
-data class Unit(val activites:MutableList<Float>) {
+data class Unit(var name: String, var tag: String){
+    var regimes: MutableList<Column> = mutableListOf()
+    var capacities: MutableList<Capacity> = mutableListOf()
 }
+

@@ -1,6 +1,7 @@
 package com.example.optiplans.entities
 
-data class Utility(var name: String, var tag: String){
+data class Column(var name: String, var tag: String){
+    lateinit var nameOfColumn: String
     var regimes: MutableList<Column> = mutableListOf()
     var price: MutableList<Float> = mutableListOf()
     var cost: MutableList<Float> = mutableListOf()

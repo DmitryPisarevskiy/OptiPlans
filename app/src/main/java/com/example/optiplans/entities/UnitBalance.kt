@@ -8,6 +8,6 @@ class UnitBalance (val unit: Unit) {
     var productSum: Float=0f
 
     init {
-        feeds = unit.regimes.
+        feeds = unit.regimes
     }
 }

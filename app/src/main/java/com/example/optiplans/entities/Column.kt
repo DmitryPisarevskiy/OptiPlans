@@ -1,8 +1,9 @@
 package com.example.optiplans.entities
 
-data class Column(var name: String, var tag: String, var unit: Unit?){
+class Column(var name: String, var tag: String, var unit: Unit?, val numOfPeriods: Int){
     var nameOfColumn: String = (unit?.tag ?: "") + tag
-    var Streams: MutableList<Stream> = mutableListOf()
+    var strAndCoeffs: MutableMap <Stream, Float> = mutableMapOf()
+    var activities = Array<Float>(numOfPeriods) {0f}
     var Utilities: MutableList<Utility> = mutableListOf()
 }
 

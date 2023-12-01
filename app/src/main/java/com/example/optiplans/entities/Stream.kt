@@ -1,7 +1,6 @@
 package com.example.optiplans.entities
 
 data class Stream(var name: String, var tag: String, var numOfPeriods: Int){
-    var regimes: MutableList<Column> = mutableListOf()
     var prices = Array<Float>(numOfPeriods){0f}
     var costs = Array<Float>(numOfPeriods){0f}
     var minBoundsSales = Array<Float>(numOfPeriods){0f}

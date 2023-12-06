@@ -21,6 +21,12 @@ class Unit(var name: String, var tag: String, val numOfPeriods: Int){
                     } else {
                         feeds[m.key]?.plus(it.activities.times(m.value))
                     }
+                } else if (m.value<0) {
+                    if (!products.containsKey(m.key)) {
+                        products.put(m.key,it.activities.times(m.value))
+                    } else {
+                        products[m.key]?.plus(it.activities.times(m.value))
+                    }
                 }
             }
         }

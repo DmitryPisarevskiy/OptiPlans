@@ -13,8 +13,10 @@ import org.junit.Assert.*
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        val c = Column("abcd", "efgh", null)
-        println(c.nameOfColumn)
-        assertEquals(4, 2 + 2)
+        var a: Array<Float> = Array<Float> (4) {1f}
+        for (i in 0..<a.size) {
+            a[i] = a[i] *2
+        }
+        assertEquals(a[2],2f)
     }
 }

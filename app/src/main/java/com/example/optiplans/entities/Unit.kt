@@ -1,6 +1,8 @@
 package com.example.optiplans.entities
 
-data class Unit(var name: String, var tag: String, val numOfPeriods: Int){
+import com.example.optiplans.entities.Extensions
+
+class Unit(var name: String, var tag: String, val numOfPeriods: Int){
     var regimes: MutableList<Column> = mutableListOf()
     var capacities: MutableList<Capacity> = mutableListOf()
     var isBalanced: Boolean = false
@@ -15,12 +17,29 @@ data class Unit(var name: String, var tag: String, val numOfPeriods: Int){
             for (m in it.strAndCoeffs) {
                 if (m.value>0) {
                     if (!feeds.containsKey(m.key)) {
-                        feeds.put(m.key,m.value*it.activities)
+                        feeds.put(m.key,it.activities.times(m.value))
+                    } else {
+                        feeds[m.key]?.plus(it.activities.times(m.value))
                     }
                 }
             }
         }
-        feeds = regimes
+    }
+    operator fun Array<Float>.times(value: Float): Array<Float> {
+        val result = Array<Float> (this.size) {0f}
+        for (i in 0..<this.size) {
+            result[i] = this[i]*value
+        }
+        return result
+    }
+
+    operator fun Array<Float>.plus(array: Array<Float>): Array<Float> {
+        val result = Array<Float> (this.size) {0f}
+        for (i in 0..<this.size) {
+            result[i] = this[i]+array[i]
+        }
+        return result
     }
 }
+
 

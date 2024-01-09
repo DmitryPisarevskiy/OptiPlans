@@ -6,7 +6,6 @@ class Unit(var name: String, var tag: String, val numOfPeriods: Int){
     var isBalanced: Boolean = false
     var feeds: MutableMap<Stream, Array<Float>> = mutableMapOf()
     var products: MutableMap<Stream, Array<Float>> = mutableMapOf()
-
     var isEqualAll: Boolean = false
     var feedSum: Array<Float> = Array<Float> (numOfPeriods) {0f}
     var productSum: Array<Float> = Array<Float> (numOfPeriods) {0f}
@@ -31,7 +30,11 @@ class Unit(var name: String, var tag: String, val numOfPeriods: Int){
         }
         feedSum = Array<Float> (numOfPeriods) {0f}
         feeds.forEach {
-
+            feedSum.plus(it.value)
+        }
+        productSum = Array<Float> (numOfPeriods) {0f}
+        products.forEach {
+            productSum.plus(it.value)
         }
     }
 }

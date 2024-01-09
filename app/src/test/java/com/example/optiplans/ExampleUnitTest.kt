@@ -1,6 +1,8 @@
 package com.example.optiplans
 
 import com.example.optiplans.entities.Column
+import com.example.optiplans.entities.Stream
+import com.example.optiplans.entities.Unit
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -12,11 +14,36 @@ import org.junit.Assert.*
  */
 class ExampleUnitTest {
     @Test
-    fun addition_isCorrect() {
-        var a: Array<Float> = Array<Float> (4) {1f}
-        for (i in 0..<a.size) {
-            a[i] = a[i] *2
-        }
-        assertEquals(a[2],2f)
+    fun unit_balance_is_correct() {
+        var u:Unit = Unit("Unit", "SFCC", 3)
+        var s1: Stream = Stream("Этан", "ETN", 3)
+        var s2: Stream = Stream("ШФЛУ", "SLU", 3)
+        var s3: Stream = Stream("Нафта", "NAF", 3)
+        var s4: Stream = Stream("Этилен", "ETY", 3)
+        var s5: Stream = Stream("Пропилен", "PRP", 3)
+        var s6: Stream = Stream("Пироконденсат", "PIR", 3)
+        var c1:Column = Column("Первый режим", "AAA", 3)
+        var c2:Column = Column("Второй режим", "BBB", 3)
+        var c3:Column = Column("Третий режим", "ССС", 3)
+        c1.strAndCoeffs.put(s1, 1f)
+        c1.strAndCoeffs.put(s4, -0.8f)
+        c1.strAndCoeffs.put(s5, -0.1f)
+        c1.strAndCoeffs.put(s6, -0.1f)
+        c2.strAndCoeffs.put(s2, 1f)
+        c2.strAndCoeffs.put(s4, -0.7f)
+        c2.strAndCoeffs.put(s5, -0.15f)
+        c2.strAndCoeffs.put(s6, -0.15f)
+        c3.strAndCoeffs.put(s3, 1f)
+        c3.strAndCoeffs.put(s4, -0.6f)
+        c3.strAndCoeffs.put(s5, -0.2f)
+        c3.strAndCoeffs.put(s6, -0.2f)
+        c1.activities = arrayOf(1f, 0f, 0f)
+        c2.activities = arrayOf(0f, 1f, 0f)
+        c3.activities = arrayOf(0f, 0f, 1f)
+        u.regimes.add(c1)
+        u.regimes.add(c2)
+        u.regimes.add(c3)
+        u.balance()
+        assertEquals(u.feedSum[0],1f)
     }
 }

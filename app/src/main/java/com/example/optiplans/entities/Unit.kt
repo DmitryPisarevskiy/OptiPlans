@@ -17,24 +17,24 @@ class Unit(var name: String, var tag: String, val numOfPeriods: Int){
                     if (!feeds.containsKey(m.key)) {
                         feeds[m.key] = it.activities.times(m.value)
                     } else {
-                        feeds[m.key]?.plus(it.activities.times(m.value))
+                        feeds[m.key] = feeds[m.key]!!.plus(it.activities.times(m.value))
                     }
                 } else if (m.value<0) {
                     if (!products.containsKey(m.key)) {
                         products[m.key] = it.activities.times(m.value)
                     } else {
-                        products[m.key]?.plus(it.activities.times(m.value))
+                        products[m.key] = products[m.key]!!.plus(it.activities.times(m.value))
                     }
                 }
             }
         }
         feedSum = Array<Float> (numOfPeriods) {0f}
         feeds.forEach {
-            feedSum.plus(it.value)
+            feedSum = feedSum.plus(it.value)
         }
         productSum = Array<Float> (numOfPeriods) {0f}
         products.forEach {
-            productSum.plus(it.value)
+            productSum=productSum.plus(it.value)
         }
     }
 }

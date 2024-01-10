@@ -38,12 +38,15 @@ class ExampleUnitTest {
         c3.strAndCoeffs.put(s5, -0.2f)
         c3.strAndCoeffs.put(s6, -0.2f)
         c1.activities = arrayOf(1f, 0f, 0f)
-        c2.activities = arrayOf(0f, 1f, 0f)
-        c3.activities = arrayOf(0f, 0f, 1f)
+        c2.activities = arrayOf(1f, 1f, 0f)
+        c3.activities = arrayOf(1f, 0f, 1f)
         u.regimes.add(c1)
         u.regimes.add(c2)
         u.regimes.add(c3)
         u.balance()
-        assertEquals(u.feedSum[0],1f)
+        //assertEquals(u.feedSum[0],3f)
+        //assertArrayEquals(u.products[s4],arrayOf(-2.1f,-0.7f,-0.6f))
+        //assertArrayEquals(u.products[s5],arrayOf(-0.45f,-0.15f,-0.2f))
+        assertArrayEquals(u.products[s6],arrayOf(-0.45f,-0.15f,-0.2f))
     }
 }

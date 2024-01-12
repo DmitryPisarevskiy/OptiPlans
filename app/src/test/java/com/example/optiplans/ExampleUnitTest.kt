@@ -43,10 +43,11 @@ class ExampleUnitTest {
         u.regimes.add(c1)
         u.regimes.add(c2)
         u.regimes.add(c3)
-        u.balance()
+        u.streamBalance()
         //assertEquals(u.feedSum[0],3f)
         //assertArrayEquals(u.products[s4],arrayOf(-2.1f,-0.7f,-0.6f))
         //assertArrayEquals(u.products[s5],arrayOf(-0.45f,-0.15f,-0.2f))
-        assertArrayEquals(u.products[s6],arrayOf(-0.45f,-0.15f,-0.2f))
+        //assertArrayEquals(u.products[s6],arrayOf(-0.45f,-0.15f,-0.2f))
+        assertEquals(true, u.isEqualAll)
     }
 }

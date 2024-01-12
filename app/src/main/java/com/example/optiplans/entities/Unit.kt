@@ -10,7 +10,7 @@ class Unit(var name: String, var tag: String, val numOfPeriods: Int){
     var feedSum: Array<Float> = Array<Float> (numOfPeriods) {0f}
     var productSum: Array<Float> = Array<Float> (numOfPeriods) {0f}
 
-    fun balance() {
+    fun streamBalance() {
         regimes.forEach {
             for (m in it.strAndCoeffs) {
                 if (m.value>0) {
@@ -36,7 +36,17 @@ class Unit(var name: String, var tag: String, val numOfPeriods: Int){
         products.forEach {
             productSum=productSum.plus(it.value)
         }
+        isBalanced = true
+        isEqualAll = true
+        for (i in 0..<numOfPeriods) {
+            if (feedSum[i] != -productSum[i]) {
+                isEqualAll = false
+            }
+        }
+
     }
+
+
 }
 
 

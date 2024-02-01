@@ -1,5 +1,5 @@
 package com.example.optiplans.entities
-
-class Model(var numOfPeriods:Int) {
-    var periods = Array<Byte>(numOfPeriods) {0}
+open class Model(var numOfPeriods:Int) {
+    public var periods = Array<Byte>(numOfPeriods) {0}
+    var units: MutableList<Unit> = mutableListOf()
 }

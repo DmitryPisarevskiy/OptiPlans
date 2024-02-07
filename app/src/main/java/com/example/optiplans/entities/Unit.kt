@@ -1,25 +1,27 @@
 package com.example.optiplans.entities
 
-class Unit(var name: String, var tag: String, val numOfPeriods: Int){
+import kotlin.math.abs
+
+class Unit(var name: String, var tag: String, val numOfPeriods: Int) {
     var regimes: MutableList<Column> = mutableListOf()
     var capacities: MutableList<Capacity> = mutableListOf()
     var isBalanced: Boolean = false
     var feeds: MutableMap<Stream, Array<Float>> = mutableMapOf()
     var products: MutableMap<Stream, Array<Float>> = mutableMapOf()
     var isEqualAll: Boolean = false
-    var feedSum: Array<Float> = Array<Float> (numOfPeriods) {0f}
-    var productSum: Array<Float> = Array<Float> (numOfPeriods) {0f}
+    var feedSum: Array<Float> = Array<Float>(numOfPeriods) { 0f }
+    var productSum: Array<Float> = Array<Float>(numOfPeriods) { 0f }
 
     fun streamBalance() {
         regimes.forEach {
             for (m in it.strAndCoeffs) {
-                if (m.value>0) {
+                if (m.value > 0) {
                     if (!feeds.containsKey(m.key)) {
                         feeds[m.key] = it.activities.times(m.value)
                     } else {
                         feeds[m.key] = feeds[m.key]!!.plus(it.activities.times(m.value))
                     }
-                } else if (m.value<0) {
+                } else if (m.value < 0) {
                     if (!products.containsKey(m.key)) {
                         products[m.key] = it.activities.times(m.value)
                     } else {
@@ -28,18 +30,18 @@ class Unit(var name: String, var tag: String, val numOfPeriods: Int){
                 }
             }
         }
-        feedSum = Array<Float> (numOfPeriods) {0f}
+        feedSum = Array<Float>(numOfPeriods) { 0f }
         feeds.forEach {
             feedSum = feedSum.plus(it.value)
         }
-        productSum = Array<Float> (numOfPeriods) {0f}
+        productSum = Array<Float>(numOfPeriods) { 0f }
         products.forEach {
-            productSum=productSum.plus(it.value)
+            productSum = productSum.plus(it.value)
         }
         isBalanced = true
         isEqualAll = true
         for (i in 0..<numOfPeriods) {
-            if (feedSum[i] != -productSum[i]) {
+            if (abs(feedSum[i] + productSum[i]) > 0.001) {
                 isEqualAll = false
             }
         }

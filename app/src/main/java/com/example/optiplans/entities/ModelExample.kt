@@ -7,19 +7,30 @@ object ModelExample : Model(3) {
         this.periods[1] = 10
         this.periods[2] = 11
 
-        // Stream construction
+        // Unit creation
         val epUnit = Unit("ЭП-300", "MEP", 3)
         val hdpeUnit = Unit("ПЭНД", "PND", 3)
-        val iaaUnit = Unit("ЛАК", "PND", 3)
+        val iaaUnit = Unit("ЛАК", "LAK", 3)
+
+        // Stream construction
         val ethaneStream = Stream("Этан", "ETN", 3, bought = true)
+        this.streams.add(ethaneStream)
         val lpgStream = Stream("ШФЛУ", "SLU", 3, bought = true)
+        this.streams.add(lpgStream)
         val naphtaStream = Stream("Нафта", "NAF", 3, bought = true)
+        this.streams.add(naphtaStream)
         val ethyleneStream = Stream("Этилен", "ETY", 3, sold = true)
+        this.streams.add(ethyleneStream)
         val propyleneStream = Stream("Пропилен", "PRP", 3)
+        this.streams.add(propyleneStream)
         val tspStream = Stream("Пироконденсат", "PIR", 3, sold = true)
+        this.streams.add(tspStream)
         val hdpeStream = Stream("ПЭНД", "PND", 3, sold = true)
+        this.streams.add(hdpeStream)
         val iaaStream = Stream("ЛАК", "LAK", 3, sold = true)
-        val waterStream = Stream("Синтез-газ", "SGA", 3, bought = true)
+        this.streams.add(iaaStream)
+        val waterStream = Stream("Вода", "WAT", 3, bought = true)
+        this.streams.add(waterStream)
 
         // Prices, costs
         ethaneStream.costs = arrayOf(20f,20f,20f)
@@ -31,7 +42,7 @@ object ModelExample : Model(3) {
         iaaStream.prices = arrayOf(10f,10f,10f)
         waterStream.costs = arrayOf(10f,10f,10f)
 
-        // Stream construction
+        // Column construction
         val etnColumn:Column = Column("Переработка этана", "ETN", 3)
         val sluColumn:Column = Column("Переработка ШФЛУ", "SLU", 3)
         val nafColumn:Column = Column("Переработка нафты", "NAF", 3)
@@ -53,9 +64,9 @@ object ModelExample : Model(3) {
         nafColumn.strAndCoeffs.put(tspStream, -0.2f)
         etyColumn.strAndCoeffs.put(ethyleneStream, 1.0f)
         etyColumn.strAndCoeffs.put(hdpeStream, -1.0f)
-        prlColumn.strAndCoeffs.put(propyleneStream, 0.54f)
-        prlColumn.strAndCoeffs.put(waterStream, 0.46f)
-        prlColumn.strAndCoeffs.put(iaaStream, -1.0f)
+        prlColumn.strAndCoeffs.put(propyleneStream, 1.0f)
+        prlColumn.strAndCoeffs.put(waterStream, 0.85f)
+        prlColumn.strAndCoeffs.put(iaaStream, -1.85f)
 
         // Adding columns to units
         epUnit.regimes.add(etnColumn)
@@ -75,5 +86,13 @@ object ModelExample : Model(3) {
         nafColumn.activities = arrayOf(1f, 0f, 1f)
         etyColumn.activities = arrayOf(2f, 0.5f, 0.5f)
         prlColumn.activities = arrayOf(0.45f, 0.15f, 0.2f)
+        ethaneStream.purchases = arrayOf(1f, 0f, 0f)
+        lpgStream.purchases = arrayOf(1f, 1f, 0f)
+        naphtaStream.purchases = arrayOf(1f, 0f, 1f)
+        ethyleneStream.sails =  arrayOf(0.1f, 0.2f, 0.1f)
+        tspStream.sails =  arrayOf(0.45f, 0.15f, 0.2f)
+        hdpeStream.sails =  arrayOf(2.0f, 0.5f, 0.5f)
+        iaaStream.sails =  arrayOf(0.8325f, 0.2775f, 0.37f)
+        waterStream.purchases =  arrayOf(0.3825f, 0.1275f, 0.17f)
     }
 }

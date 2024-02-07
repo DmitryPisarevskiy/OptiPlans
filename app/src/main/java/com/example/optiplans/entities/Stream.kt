@@ -1,6 +1,8 @@
 package com.example.optiplans.entities
 
-data class Stream(
+import kotlin.math.abs
+
+class Stream(
     var name: String,
     var tag: String,
     var numOfPeriods: Int,
@@ -9,9 +11,43 @@ data class Stream(
 ) {
     var prices = Array<Float>(numOfPeriods) { 0f }
     var costs = Array<Float>(numOfPeriods) { 0f }
+    var sails = Array<Float> (numOfPeriods) {0f}
+    var purchases = Array<Float> (numOfPeriods) {0f}
     var minBoundsSales = Array<Float>(numOfPeriods) { 0f }
     var maxBoundsSales = Array<Float>(numOfPeriods) { 0f }
     var minBoundsPurchases = Array<Float>(numOfPeriods) { 0f }
     var maxBoundsPurchases = Array<Float>(numOfPeriods) { 0f }
+    var balance: MutableMap<Column, Float> = mutableMapOf()
+    var isBalanced: Boolean = false
+    var isEqualed: Boolean = false
+    var produced = Array<Float>(numOfPeriods) { 0f }
+    var spent = Array<Float>(numOfPeriods) { 0f }
 
+    fun materialBalance(model: Model) {
+        produced = Array<Float>(numOfPeriods) { 0f }
+        spent = Array<Float>(numOfPeriods) { 0f }
+        model.units.forEach { u ->
+            u.regimes.forEach { c ->
+                c.strAndCoeffs[this]?.let { coeff ->
+                    balance[c] = coeff
+                    if (coeff > 0.0) {
+                        for (i in 0..<numOfPeriods) {
+                            spent[i] += c.activities[i] * coeff
+                        }
+                    } else {
+                        for (i in 0..<numOfPeriods) {
+                            produced[i] += c.activities[i] * coeff
+                        }
+                    }
+                }
+            }
+        }
+        isBalanced = true
+        isEqualed = true
+        for (i in 0..<numOfPeriods) {
+            if (abs(produced[i] + spent[i] - purchases[i] + sails [i])> 0.001) {
+                isEqualed = false
+            }
+        }
+    }
 }

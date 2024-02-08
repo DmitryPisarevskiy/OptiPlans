@@ -41,5 +41,6 @@ class ExampleUnitTest {
         assertEquals(true, model.streams[6].isEqualed)
         assertEquals(true, model.streams[7].isEqualed)
         assertEquals(true, model.streams[8].isEqualed)
+       // assertEquals(model.units[0].products[0, model.streams[8].isEqualed)
     }
 }

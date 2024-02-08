@@ -48,6 +48,12 @@ class Unit(var name: String, var tag: String, val numOfPeriods: Int) {
 
     }
 
+    fun calculateCaps() {
+        for (i in 0..<capacities.size) {
+            capacities[i].calculateActivities()
+        }
+    }
+
 
 }
 

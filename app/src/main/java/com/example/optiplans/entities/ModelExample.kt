@@ -1,5 +1,7 @@
 package com.example.optiplans.entities
 
+import kotlinx.coroutines.newSingleThreadContext
+
 object ModelExample : Model(3) {
     init {
         // Periods initialization
@@ -75,6 +77,26 @@ object ModelExample : Model(3) {
         hdpeUnit.regimes.add(etyColumn)
         iaaUnit.regimes.add(prlColumn)
 
+        // Capacities creation
+        val epEtyCap = Capacity("Мощность ЭП по этилену", "ETY", 3)
+        val epTotCap = Capacity("Мощность ЭП по сырью", "EPT",3)
+        val hdpeCap = Capacity("Мощность ПЭНД", "PND",3)
+        val iaaCap = Capacity("Мощность ЛАК", "LAK",3)
+        epEtyCap.regimesAndCoeffs.put(etnColumn,0.8f)
+        epEtyCap.regimesAndCoeffs.put(sluColumn,0.7f)
+        epEtyCap.regimesAndCoeffs.put(nafColumn,0.6f)
+        epTotCap.regimesAndCoeffs.put(etnColumn,1.0f)
+        epTotCap.regimesAndCoeffs.put(sluColumn,1.0f)
+        epTotCap.regimesAndCoeffs.put(nafColumn,1.0f)
+        hdpeCap.regimesAndCoeffs.put(etyColumn,1.0f)
+        iaaCap.regimesAndCoeffs.put(prlColumn,1.85f)
+
+        // Adding capacities to units
+        epUnit.capacities.add(epEtyCap)
+        epUnit.capacities.add(epTotCap)
+        hdpeUnit.capacities.add(hdpeCap)
+        iaaUnit.capacities.add(iaaCap)
+
         //Adding units to model
         this.units.add(epUnit)
         this.units.add(hdpeUnit)
@@ -94,5 +116,10 @@ object ModelExample : Model(3) {
         hdpeStream.sails =  arrayOf(2.0f, 0.5f, 0.5f)
         iaaStream.sails =  arrayOf(0.8325f, 0.2775f, 0.37f)
         waterStream.purchases =  arrayOf(0.3825f, 0.1275f, 0.17f)
+
+        // Capacities calculating
+        epUnit.calculateCaps()
+        hdpeUnit.calculateCaps()
+        iaaUnit.calculateCaps()
     }
 }

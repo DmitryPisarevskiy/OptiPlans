@@ -3,17 +3,17 @@
     <item android:id="@+id/home"
         android:icon="@drawable/ic_home"
         android:orderInCategory="1"
-        android:title="" />
+        android:title="home" />
     <item android:id="@+id/schema"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_model"
         android:orderInCategory="2"
-        android:title="" />
+        android:title="model" />
     <item android:id="@+id/table"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_unit"
         android:orderInCategory="3"
-        android:title="" />
+        android:title="unit" />
     <item android:id="@+id/unit"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_unit_config"
         android:orderInCategory="4"
-        android:title="" />
+        android:title="unit" />
 </menu>

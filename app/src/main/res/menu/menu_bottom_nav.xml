@@ -5,15 +5,15 @@
         android:orderInCategory="1"
         android:title="home" />
     <item android:id="@+id/schema"
-        android:icon="@drawable/ic_model"
+        android:icon="@drawable/ic_schema"
         android:orderInCategory="2"
         android:title="model" />
     <item android:id="@+id/table"
-        android:icon="@drawable/ic_unit"
+        android:icon="@drawable/ic_model"
         android:orderInCategory="3"
-        android:title="unit" />
+        android:title="units" />
     <item android:id="@+id/unit"
-        android:icon="@drawable/ic_unit_config"
+        android:icon="@drawable/ic_unit"
         android:orderInCategory="4"
         android:title="unit" />
 </menu>

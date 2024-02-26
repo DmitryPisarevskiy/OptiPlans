@@ -12,4 +12,5 @@
     <string name="tv_home_model_name">Модель</string>
     <string name="tv_home_num_of_periods">Количество периодов:</string>
     <string name="tv_home_units">Установки</string>
+    <string name="tv_home_streams">Потоки</string>
 </resources>

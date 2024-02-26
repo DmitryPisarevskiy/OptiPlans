@@ -7,7 +7,9 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="model_name_home_fragment">Название модели</string>
+    <string name="tv_home_caption">Название модели</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="model_home_fragment">Модель</string>
+    <string name="tv_home_model_name">Модель</string>
+    <string name="tv_home_num_of_periods">Количество периодов:</string>
+    <string name="tv_home_units">Установки</string>
 </resources>

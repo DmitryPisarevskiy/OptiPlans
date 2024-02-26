@@ -7,21 +7,43 @@
     tools:context=".HomeFragment">
 
     <TextView
-        android:id="@+id/textview_first"
+        android:id="@+id/tv_home_caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:text="@string/model_name_home_fragment"
+        android:text="@string/tv_home_caption"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_home_model_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/model_home_fragment"
+        android:text="@string/tv_home_model_name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_first" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_home_caption" />
+
+    <TextView
+        android:id="@+id/tv_home_num_of_periods"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="9dp"
+        android:text="@string/tv_home_num_of_periods"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_home_model_name" />
+
+    <TextView
+        android:id="@+id/tv_home_units"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/tv_home_units"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_home_num_of_periods" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

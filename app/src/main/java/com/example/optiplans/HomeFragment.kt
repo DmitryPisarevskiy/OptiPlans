@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.optiplans.databinding.FragmentHomeBinding
+import com.example.optiplans.entities.ModelExample
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -30,7 +31,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.tvHomeModelName.text = ModelExample.name
+        binding.tvHomeNumOfPeriods.text = ModelExample.numOfPeriods.toString()
     }
 
     override fun onDestroyView() {

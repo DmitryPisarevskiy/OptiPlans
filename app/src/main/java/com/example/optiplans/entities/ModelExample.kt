@@ -2,7 +2,7 @@ package com.example.optiplans.entities
 
 import kotlinx.coroutines.newSingleThreadContext
 
-object ModelExample : Model(3) {
+object ModelExample : Model("ГПНС. Февраль" ,3) {
     init {
         // Periods initialization
         this.periods[0] = 10

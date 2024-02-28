@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    tools:context=".view.HomeFragment">
 
     <TextView
         android:id="@+id/tv_home_caption"
@@ -47,7 +47,17 @@
         android:layout_marginTop="32dp"
         android:text="@string/tv_home_units"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_home_num_of_periods_label" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_home_num_of_periods_label"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rw_home_units"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_home_units"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:listitem="@layout/rw_home_units_item"
+        />
 
     <TextView
         android:id="@+id/tv_home_streams"
@@ -58,7 +68,17 @@
         android:layout_marginTop="16dp"
         android:text="@string/tv_home_streams"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_home_units" />
+        app:layout_constraintTop_toBottomOf="@+id/rw_home_units" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rw_home_streams"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_home_streams"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:listitem="@layout/rw_home_streams_item"
+        />
 
     <TextView
         android:id="@+id/tv_home_num_of_periods"

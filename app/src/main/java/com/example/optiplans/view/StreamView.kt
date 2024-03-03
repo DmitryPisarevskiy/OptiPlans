@@ -24,8 +24,8 @@ class StreamView @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        canvas.drawArc(-width*0.9f,-height*0.4f,width*0.9f,height*1.4f,-30f,60f,true,fillPaint)
-        canvas.drawArc(-width*0.9f,-height*0.4f,width*0.9f,height*1.4f,-30f,60f,true,strokePaint)
+        canvas.drawArc(-width*0.9f,-height*0.4f,width*0.9f,height*1.4f,-25f,50f,true,fillPaint)
+        canvas.drawArc(-width*0.9f,-height*0.4f,width*0.9f,height*1.4f,-25f,50f,true,strokePaint)
     }
 
     fun painting(fColor: Int) {

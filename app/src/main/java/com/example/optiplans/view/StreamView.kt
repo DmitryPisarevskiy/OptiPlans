@@ -7,7 +7,7 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
 
-class UnitView @JvmOverloads constructor(
+class StreamView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0,
 ): View(context,attrs,defStyleAttr){
 
@@ -24,13 +24,12 @@ class UnitView @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        canvas.drawRoundRect(width*0.1f,height*0.1f,width*0.9f,height*0.9f,width*0.1f,width*0.1f,fillPaint)
-        canvas.drawRoundRect(width*0.1f,height*0.1f,width*0.9f,height*0.9f,width*0.1f,width*0.1f,strokePaint)
+        canvas.drawArc(-width*0.9f,-height*0.4f,width*0.9f,height*1.4f,-30f,60f,true,fillPaint)
+        canvas.drawArc(-width*0.9f,-height*0.4f,width*0.9f,height*1.4f,-30f,60f,true,strokePaint)
     }
 
     fun painting(fColor: Int) {
         fillPaint.color = fColor
         invalidate()
     }
-
 }

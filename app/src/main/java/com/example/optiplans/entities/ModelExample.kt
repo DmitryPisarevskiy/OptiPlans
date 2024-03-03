@@ -1,5 +1,6 @@
 package com.example.optiplans.entities
 
+import android.graphics.Color
 import kotlinx.coroutines.newSingleThreadContext
 
 object ModelExample : Model("ГПНС. Февраль" ,3) {
@@ -10,28 +11,28 @@ object ModelExample : Model("ГПНС. Февраль" ,3) {
         this.periods[2] = 11
 
         // Unit creation
-        val epUnit = Unit("ЭП-300", "MEP", 3)
+        val epUnit = Unit("ЭП-300", "MEP", 3, Color.parseColor("#CCB20B"))
         val hdpeUnit = Unit("ПЭНД", "PND", 3)
         val iaaUnit = Unit("ЛАК", "LAK", 3)
 
         // Stream construction
-        val ethaneStream = Stream("Этан", "ETN", 3, bought = true)
+        val ethaneStream = Stream("Этан", "ETN", 3, bought = true, color = Color.parseColor("#AA4F4F"))
         this.streams.add(ethaneStream)
-        val lpgStream = Stream("ШФЛУ", "SLU", 3, bought = true)
+        val lpgStream = Stream("ШФЛУ", "SLU", 3, bought = true, color = Color.parseColor("#51DD06"))
         this.streams.add(lpgStream)
-        val naphtaStream = Stream("Нафта", "NAF", 3, bought = true)
+        val naphtaStream = Stream("Нафта", "NAF", 3, bought = true, color = Color.parseColor("#CC0BAB"))
         this.streams.add(naphtaStream)
-        val ethyleneStream = Stream("Этилен", "ETY", 3, sold = true)
+        val ethyleneStream = Stream("Этилен", "ETY", 3, sold = true, color = Color.parseColor("#CCB20B"))
         this.streams.add(ethyleneStream)
-        val propyleneStream = Stream("Пропилен", "PRP", 3)
+        val propyleneStream = Stream("Пропилен", "PRP", 3, color = Color.parseColor("#CC0BAB"))
         this.streams.add(propyleneStream)
-        val tspStream = Stream("Пироконденсат", "PIR", 3, sold = true)
+        val tspStream = Stream("Пироконденсат", "PIR", 3, sold = true, color = Color.parseColor("#51DD06"))
         this.streams.add(tspStream)
-        val hdpeStream = Stream("ПЭНД", "PND", 3, sold = true)
+        val hdpeStream = Stream("ПЭНД", "PND", 3, sold = true, color = Color.parseColor("#AA4F4F"))
         this.streams.add(hdpeStream)
-        val iaaStream = Stream("ЛАК", "LAK", 3, sold = true)
+        val iaaStream = Stream("ЛАК", "LAK", 3, sold = true, color = Color.parseColor("#51DD06"))
         this.streams.add(iaaStream)
-        val waterStream = Stream("Вода", "WAT", 3, bought = true)
+        val waterStream = Stream("Вода", "WAT", 3, bought = true, color = Color.parseColor("#AA4F4F"))
         this.streams.add(waterStream)
 
         // Prices, costs

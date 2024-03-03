@@ -1,5 +1,6 @@
 package com.example.optiplans.view.rw.home
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +23,6 @@ class RWHomeUnitsAdapter(private val units: List<Unit>): RecyclerView.Adapter<RW
         val unit = units[position]
         val context = holder.itemView.context
         holder.binding.tvHomeUnitsItem.text = unit.name
+        holder.binding.uvHomeUnitsUnit.painting(unit.color)
     }
-
 }

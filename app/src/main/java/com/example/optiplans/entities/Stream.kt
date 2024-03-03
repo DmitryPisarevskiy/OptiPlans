@@ -1,5 +1,6 @@
 package com.example.optiplans.entities
 
+import android.graphics.Color
 import kotlin.math.abs
 
 class Stream(
@@ -7,7 +8,8 @@ class Stream(
     var tag: String,
     var numOfPeriods: Int,
     var sold: Boolean = false,
-    var bought: Boolean = false
+    var bought: Boolean = false,
+    var color: Int = Color.parseColor("#DADADA")
 ) {
     var prices = Array<Float>(numOfPeriods) { 0f }
     var costs = Array<Float>(numOfPeriods) { 0f }

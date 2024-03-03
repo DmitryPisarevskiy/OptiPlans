@@ -23,5 +23,6 @@ class RWHomeStreamsAdapter(private val streams: List<Stream>): RecyclerView.Adap
         val stream = streams[position]
         val context = holder.itemView.context
         holder.binding.tvHomeStreamsItem.text = stream.name
+        holder.binding.svHomeStreamsStream.painting(stream.color)
     }
 }

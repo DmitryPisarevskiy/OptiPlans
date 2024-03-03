@@ -1,8 +1,9 @@
 package com.example.optiplans.entities
 
+import android.graphics.Color
 import kotlin.math.abs
 
-class Unit(var name: String, var tag: String, val numOfPeriods: Int) {
+class Unit(var name: String, var tag: String, val numOfPeriods: Int, var color: Int = Color.parseColor("#DADADA") ) {
     var regimes: MutableList<Column> = mutableListOf()
     var capacities: MutableList<Capacity> = mutableListOf()
     var isBalanced: Boolean = false

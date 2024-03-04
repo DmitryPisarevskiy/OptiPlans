@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.example.optiplans.view.ModelFragment"
+        android:name="com.example.optiplans.view.TableFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_schema">
 

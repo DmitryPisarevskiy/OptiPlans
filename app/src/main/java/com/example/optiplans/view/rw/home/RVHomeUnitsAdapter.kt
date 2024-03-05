@@ -1,19 +1,18 @@
 package com.example.optiplans.view.rw.home
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.optiplans.databinding.RwHomeUnitsItemBinding
+import com.example.optiplans.databinding.RvHomeUnitsItemBinding
 import com.example.optiplans.entities.Unit
 
-class RWHomeUnitsAdapter(private val units: List<Unit>): RecyclerView.Adapter<RWHomeUnitsAdapter.UnitViewHolder>()  {
-    class UnitViewHolder (val binding:RwHomeUnitsItemBinding): RecyclerView.ViewHolder(binding.root) {
+class RVHomeUnitsAdapter(private val units: List<Unit>): RecyclerView.Adapter<RVHomeUnitsAdapter.UnitViewHolder>()  {
+    class UnitViewHolder (val binding:RvHomeUnitsItemBinding): RecyclerView.ViewHolder(binding.root) {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UnitViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = RwHomeUnitsItemBinding.inflate(inflater, parent, false)
+        val binding = RvHomeUnitsItemBinding.inflate(inflater, parent, false)
         return UnitViewHolder(binding)
     }
 

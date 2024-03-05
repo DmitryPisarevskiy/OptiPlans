@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingTop="2dp"
+    android:paddingBottom="2dp"
+    android:paddingStart="2dp"
+    android:paddingEnd="2dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:id="@+id/fl_table_item"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/frame"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </FrameLayout>
+
+    <com.example.optiplans.view.UnitView
+        android:id="@+id/uv_table_units_unit"
+        android:layout_width="30dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/fl_table_item"
+        app:layout_constraintEnd_toEndOf="@id/fl_table_item"
+        app:layout_constraintTop_toBottomOf="@id/tv_table_item_unit_tag" />
+
+    <TextView
+        android:id="@+id/tv_table_item_unit_tag"
+        style="@style/SmallText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:freezesText="false"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        app:layout_constraintStart_toStartOf="@id/fl_table_item"
+        app:layout_constraintTop_toTopOf="@id/fl_table_item"
+        tools:text="SFCC" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

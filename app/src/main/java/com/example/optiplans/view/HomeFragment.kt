@@ -6,11 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.optiplans.databinding.FragmentHomeBinding
 import com.example.optiplans.entities.ModelExample
-import com.example.optiplans.view.rw.home.RWHomeStreamsAdapter
-import com.example.optiplans.view.rw.home.RWHomeUnitsAdapter
+import com.example.optiplans.view.rw.home.RVHomeStreamsAdapter
+import com.example.optiplans.view.rw.home.RVHomeUnitsAdapter
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -38,10 +37,10 @@ class HomeFragment : Fragment() {
         with (binding) {
             tvHomeModelName.text = ModelExample.name
             tvHomeNumOfPeriods.text = ModelExample.numOfPeriods.toString()
-            rwHomeUnits.layoutManager = GridLayoutManager(activity,2)
-            rwHomeUnits.adapter = RWHomeUnitsAdapter(ModelExample.units)
-            rwHomeStreams.layoutManager= GridLayoutManager(activity,2)
-            rwHomeStreams.adapter = RWHomeStreamsAdapter(ModelExample.streams)
+            rvHomeUnits.layoutManager = GridLayoutManager(activity,2)
+            rvHomeUnits.adapter = RVHomeUnitsAdapter(ModelExample.units)
+            rvHomeStreams.layoutManager= GridLayoutManager(activity,2)
+            rvHomeStreams.adapter = RVHomeStreamsAdapter(ModelExample.streams)
         }
 
     }

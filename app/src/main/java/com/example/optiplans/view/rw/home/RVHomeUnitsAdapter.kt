@@ -22,6 +22,6 @@ class RVHomeUnitsAdapter(private val units: List<Unit>): RecyclerView.Adapter<RV
         val unit = units[position]
         val context = holder.itemView.context
         holder.binding.tvHomeUnitsItem.text = unit.name
-        holder.binding.uvHomeUnitsUnit.painting(unit.color)
+        holder.binding.uvHomeUnitsUnit.setUnit(unit.color)
     }
 }

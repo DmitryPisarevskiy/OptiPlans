@@ -122,5 +122,12 @@ object ModelExample : Model("ГПНС. Февраль" ,3) {
         epUnit.calculateCaps()
         hdpeUnit.calculateCaps()
         iaaUnit.calculateCaps()
+
+        for (i in units.indices) {
+            units[i].streamBalance()
+        }
+        for (i in streams.indices) {
+            streams[i].materialBalance(this)
+        }
     }
 }

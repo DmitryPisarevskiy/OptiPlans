@@ -11,6 +11,8 @@ class StreamView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0,
 ): View(context,attrs,defStyleAttr){
 
+    private var asFeed: Boolean = true
+
     private val fillPaint = Paint().apply {
         color = Color.BLUE
         style = Paint.Style.FILL
@@ -24,8 +26,8 @@ class StreamView @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        canvas.drawArc(-width*0.9f,-height*0.4f,width*0.9f,height*1.4f,-25f,50f,true,fillPaint)
-        canvas.drawArc(-width*0.9f,-height*0.4f,width*0.9f,height*1.4f,-25f,50f,true,strokePaint)
+        canvas.drawArc(width*0.1f,-height*0.4f,width*1.9f,height*1.4f,155f,50f,true,fillPaint)
+        canvas.drawArc(width*0.1f,-height*0.4f,width*1.9f,height*1.4f,155f,50f,true,strokePaint)
     }
 
     fun painting(fColor: Int) {

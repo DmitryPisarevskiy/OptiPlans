@@ -23,7 +23,7 @@
     <com.example.optiplans.view.UnitView
         android:id="@+id/uv_table_units_unit"
         android:layout_width="30dp"
-        android:layout_height="70dp"
+        android:layout_height="90dp"
         android:layout_gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/fl_table_item"
@@ -32,7 +32,7 @@
 
     <TextView
         android:id="@+id/tv_table_item_unit_tag"
-        style="@style/SmallText"
+        style="@style/ItemTag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -44,7 +44,7 @@
 
     <TextView
         android:id="@+id/tv_table_item_unit_name"
-        style="@style/BigCaption"
+        style="@style/ItemCaption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

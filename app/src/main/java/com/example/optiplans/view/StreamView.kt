@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.Path
 import android.util.AttributeSet
 import android.view.View
 
@@ -26,8 +27,16 @@ class StreamView @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        canvas.drawArc(width*0.1f,-height*0.4f,width*1.9f,height*1.4f,155f,50f,true,fillPaint)
-        canvas.drawArc(width*0.1f,-height*0.4f,width*1.9f,height*1.4f,155f,50f,true,strokePaint)
+        val path = Path().apply {
+            setFillType(Path.FillType.EVEN_ODD)
+            moveTo(width*0.1f,height*0.1f)
+            lineTo(width*0.9f, height/2f)
+            lineTo(width*0.1f, height*0.9f)
+            lineTo(width*0.1f,height*0.1f)
+            close()
+        }
+        canvas.drawPath(path, fillPaint)
+        canvas.drawPath(path, strokePaint)
     }
 
     fun painting(fColor: Int) {

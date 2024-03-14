@@ -78,5 +78,11 @@ class RVTableAdapter(val model: Model) : RecyclerView.Adapter<RVTableAdapter.Tab
             set.centerVertically(textView.id, streamView.id)
             set.applyTo(holder.binding.root)
         }
+
+        val table = holder.binding.tlTableItemCaps
+        table.isStretchAllColumns = true
+        table.isShrinkAllColumns = true
+
+        val tableTitle = holder.binding.trTableItemCapsTitle
     }
 }

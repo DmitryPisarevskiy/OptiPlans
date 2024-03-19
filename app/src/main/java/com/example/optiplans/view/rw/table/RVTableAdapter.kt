@@ -80,8 +80,8 @@ class RVTableAdapter(val model: Model) : RecyclerView.Adapter<RVTableAdapter.Tab
         }
 
         val table = holder.binding.tlTableItemCaps
-        table.isStretchAllColumns = true
-        table.isShrinkAllColumns = true
+//        table.isStretchAllColumns = true
+//        table.isShrinkAllColumns = true
 
         val tableTitle = holder.binding.trTableItemCapsTitle
     }

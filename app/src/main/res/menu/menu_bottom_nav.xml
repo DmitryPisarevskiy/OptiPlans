@@ -9,11 +9,15 @@
         android:orderInCategory="2"
         android:title="model" />
     <item android:id="@+id/table"
-        android:icon="@drawable/ic_model"
+        android:icon="@drawable/ic_table"
         android:orderInCategory="3"
         android:title="units" />
     <item android:id="@+id/unit"
         android:icon="@drawable/ic_unit"
         android:orderInCategory="4"
+        android:title="unit" />
+    <item android:id="@+id/stream"
+        android:icon="@drawable/ic_stream"
+        android:orderInCategory="5"
         android:title="unit" />
 </menu>

@@ -22,7 +22,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.home -> replaceFragment(HomeFragment())
                 R.id.schema -> replaceFragment(TableFragment())
                 R.id.table -> replaceFragment(TableFragment())
-                R.id.unit -> replaceFragment(TableFragment())
+                R.id.unit -> replaceFragment(UnitFragment())
+                R.id.stream -> replaceFragment(StreamFragment())
                 else -> {}
             }
             true

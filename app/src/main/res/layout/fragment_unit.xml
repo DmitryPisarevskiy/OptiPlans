@@ -6,7 +6,6 @@
     android:layout_height="wrap_content"
     tools:context=".view.UnitFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

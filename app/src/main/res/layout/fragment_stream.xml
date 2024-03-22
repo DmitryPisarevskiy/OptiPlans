@@ -29,4 +29,50 @@
         android:layout_height="match_parent"
         tools:text="Полиэтилен низкого давления" />
 
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tv_unit_name"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TableRow
+                    android:id="@+id/tr_stream_period">
+                    <TextView
+                        style="@style/SmallText"
+                        android:text="@string/period"/>
+                </TableRow>
+                <TableRow
+                    android:id="@+id/tr_stream_min">
+                    <TextView
+                        style="@style/SmallText"
+                        android:text="@string/min"/>
+                </TableRow>
+                <TableRow
+                    android:id="@+id/tr_stream_max">
+                    <TextView
+                        style="@style/SmallText"
+                        android:text="@string/max"/>
+                </TableRow>
+                <TableRow
+                    android:id="@+id/tr_stream_fix">
+                    <TextView
+                        style="@style/SmallText"
+                        android:text="@string/fix"/>
+                </TableRow>
+                <TableRow
+                    android:id="@+id/stream_price">
+                    <TextView
+                        style="@style/SmallText"
+                        android:text="@string/price"/>
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    </HorizontalScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

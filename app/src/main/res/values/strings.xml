@@ -13,4 +13,9 @@
     <string name="tv_home_num_of_periods">Количество периодов: </string>
     <string name="tv_home_units">Установки</string>
     <string name="tv_home_streams">Потоки</string>
+    <string name="period">ПЕРИОД</string>
+    <string name="min">MIN</string>
+    <string name="max">MAX</string>
+    <string name="fix">FIX</string>
+    <string name="price">ЦЕНА</string>
 </resources>

@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.optiplans.databinding.FragmetnTableBinding
+import com.example.optiplans.databinding.FragmentTableBinding
 import com.example.optiplans.entities.ModelExample
 import com.example.optiplans.view.rw.table.RVTableAdapter
 
@@ -16,14 +16,14 @@ import com.example.optiplans.view.rw.table.RVTableAdapter
  */
 class TableFragment : Fragment() {
 
-    private var _binding: FragmetnTableBinding? = null
+    private var _binding: FragmentTableBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmetnTableBinding.inflate(inflater, container, false)
+        _binding = FragmentTableBinding.inflate(inflater, container, false)
         return binding.root
     }
 

@@ -5,22 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.optiplans.R
-
-// TODO: Rename parameter arguments, choose names that match
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import android.widget.TextView
+import com.example.optiplans.databinding.FragmentStreamBinding
+import com.example.optiplans.entities.ModelExample
+import com.example.optiplans.entities.Stream
+import org.w3c.dom.Text
 
 class StreamFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    var currentStream: Stream? = null
+    lateinit var binding: FragmentStreamBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
         }
     }
 
@@ -28,26 +25,44 @@ class StreamFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_stream, container, false)
+        binding = FragmentStreamBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        currentStream = ModelExample.currentStream
+        binding.tvStreamTag.text = currentStream?.tag?:""
+        binding.tvStreamName.text = currentStream?.name?:""
+        var iMax = currentStream?.prices?.size ?: 1
+        iMax--
+        for (i in 0..iMax) {
+            val tvPeriod = TextView(context)
+            tvPeriod.text = "Период " + i.toString() + "(" + ModelExample.periods[i].toString() + " дней)"
+            binding.trStreamPeriod.addView(tvPeriod)
+        }
+        currentStream?.minBoundsSales?.forEach {
+            val tvMIN = TextView(context)
+            tvMIN.text = it.toString()
+            binding.trStreamMin.addView(tvMIN)
+        }
+        currentStream?.maxBoundsSales?.forEach {
+            val tvMAX = TextView(context)
+            tvMAX.text = it.toString()
+            binding.trStreamMax.addView(tvMAX)
+        }
+        currentStream?.prices?.forEach {
+            val tvPrice = TextView(context)
+            tvPrice.text = it.toString()
+            binding.trStreamPrice.addView(tvPrice)
+        }
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment StreamFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             StreamFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
                 }
             }
     }

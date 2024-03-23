@@ -7,7 +7,7 @@
     tools:context=".view.StreamFragment">
 
     <TextView
-        android:id="@+id/tv_unit_tag"
+        android:id="@+id/tv_stream_tag"
         style="@style/GrayCaption"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,9 +18,9 @@
         tools:text="PND" />
 
     <TextView
-        android:id="@+id/tv_unit_name"
+        android:id="@+id/tv_stream_name"
         style="@style/MidCaption"
-        app:layout_constraintTop_toBottomOf="@+id/tv_unit_tag"
+        app:layout_constraintTop_toBottomOf="@+id/tv_stream_tag"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="5dp"
@@ -32,7 +32,7 @@
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tv_unit_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_stream_name"
         app:layout_constraintEnd_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
         <LinearLayout
@@ -67,7 +67,7 @@
                         android:text="@string/fix"/>
                 </TableRow>
                 <TableRow
-                    android:id="@+id/stream_price">
+                    android:id="@+id/tr_stream_price">
                     <TextView
                         style="@style/SmallText"
                         android:text="@string/price"/>

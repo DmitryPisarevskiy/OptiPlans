@@ -4,6 +4,8 @@ import android.graphics.Color
 import kotlinx.coroutines.newSingleThreadContext
 
 object ModelExample : Model("ГПНС. Февраль" ,3) {
+    var currentStream: Stream? = null
+    var currentUnit: Unit? = null
     init {
         // Periods initialization
         this.periods[0] = 10
@@ -113,6 +115,9 @@ object ModelExample : Model("ГПНС. Февраль" ,3) {
         lpgStream.purchases = arrayOf(1f, 1f, 0f)
         naphtaStream.purchases = arrayOf(1f, 0f, 1f)
         ethyleneStream.sails =  arrayOf(0.1f, 0.2f, 0.1f)
+        ethyleneStream.minBoundsSales = arrayOf(0.05f,0.05f,0.05f)
+        ethyleneStream.maxBoundsSales = arrayOf(1.00f,1.00f,1.00f)
+        ethyleneStream.prices = arrayOf(60.0f,70.0f,70.0f)
         tspStream.sails =  arrayOf(0.45f, 0.15f, 0.2f)
         hdpeStream.sails =  arrayOf(2.0f, 0.5f, 0.5f)
         iaaStream.sails =  arrayOf(0.8325f, 0.2775f, 0.37f)
@@ -129,5 +134,9 @@ object ModelExample : Model("ГПНС. Февраль" ,3) {
         for (i in streams.indices) {
             streams[i].materialBalance(this)
         }
+
+        //Setting current Stream and Unit
+        currentUnit = epUnit
+        currentStream = ethyleneStream
     }
 }

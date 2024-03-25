@@ -18,4 +18,7 @@
     <string name="max">MAX</string>
     <string name="fix">FIX</string>
     <string name="price">ЦЕНА</string>
+    <string name="sails">Продажи</string>
+    <string name="purchases">Покупки</string>
+    <string name="solution">РЕШЕНИЕ</string>
 </resources>

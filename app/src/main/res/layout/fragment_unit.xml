@@ -43,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TableRow
-                    android:id="@+id/tr_stream_period">
+                    android:id="@+id/tr_stream_sails_period">
                     <TextView
                         style="@style/SmallText"
                         android:text="@string/period"/>

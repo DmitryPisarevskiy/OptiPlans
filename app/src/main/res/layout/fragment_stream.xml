@@ -41,35 +41,53 @@
             android:orientation="horizontal">
             <TableLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:divider="@color/black"
+                android:showDividers="beginning">
                 <TableRow
-                    android:id="@+id/tr_stream_period">
+                    android:id="@+id/tr_stream_period"
+                    android:background="@drawable/frame">
                     <TextView
                         style="@style/SmallText"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_gravity="center"
                         android:text="@string/period"/>
                 </TableRow>
                 <TableRow
-                    android:id="@+id/tr_stream_min">
+                    android:id="@+id/tr_stream_min"
+                    android:background="@drawable/frame">
                     <TextView
                         style="@style/SmallText"
+                        android:layout_marginStart="2dp"
+                        android:layout_gravity="center"
                         android:text="@string/min"/>
                 </TableRow>
                 <TableRow
-                    android:id="@+id/tr_stream_max">
+                    android:id="@+id/tr_stream_max"
+                    android:background="@drawable/frame">
                     <TextView
                         style="@style/SmallText"
+                        android:layout_marginStart="2dp"
+                        android:layout_gravity="center"
                         android:text="@string/max"/>
                 </TableRow>
                 <TableRow
-                    android:id="@+id/tr_stream_fix">
+                    android:id="@+id/tr_stream_fix"
+                    android:background="@drawable/frame">
                     <TextView
                         style="@style/SmallText"
+                        android:layout_marginStart="2dp"
+                        android:layout_gravity="center"
                         android:text="@string/fix"/>
                 </TableRow>
                 <TableRow
-                    android:id="@+id/tr_stream_price">
+                    android:id="@+id/tr_stream_price"
+                    android:background="@drawable/frame">
                     <TextView
                         style="@style/SmallText"
+                        android:layout_marginStart="2dp"
+                        android:layout_gravity="center"
                         android:text="@string/price"/>
                 </TableRow>
             </TableLayout>

@@ -71,7 +71,7 @@ class StreamFragment : Fragment() {
     fun addTableItem(layout: LinearLayout, values: Array<Float>) {
         values.forEach {
             val textView = TextView(context)
-            textView.text = it.toString()
+            textView.text = if (it>=0) it.toString() else ""
             textView.gravity = Gravity.CENTER
             textView.setTextAppearance(R.style.TableText)
             layout.addView(textView)

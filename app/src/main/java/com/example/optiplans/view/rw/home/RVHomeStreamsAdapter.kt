@@ -25,4 +25,5 @@ class RVHomeStreamsAdapter(private val streams: List<Stream>): RecyclerView.Adap
         holder.binding.tvHomeStreamsItem.text = stream.name
         holder.binding.svHomeStreamsStream.painting(stream.color)
     }
+
 }

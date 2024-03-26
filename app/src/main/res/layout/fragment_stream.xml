@@ -7,14 +7,29 @@
     tools:context=".view.StreamFragment">
 
     <TextView
-        android:id="@+id/tv_stream_tag"
+        android:id="@+id/tv_stream_tag0"
         style="@style/GrayCaption"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:text="@string/tag"
+        android:textAllCaps="false"
+        android:textStyle="normal"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tv_stream_tag"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_stream_tag"
+        style="@style/GrayCaption"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tv_stream_tag0"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="PND" />
 
     <TextView
@@ -29,11 +44,19 @@
         android:layout_height="match_parent"
         tools:text="Полиэтилен низкого давления" />
 
+    <FrameLayout
+        android:id="@+id/fl_first_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_stream_name"
+        android:background="@color/gray"
+        android:layout_marginTop="10dp"/>
+
     <HorizontalScrollView
         android:id="@+id/hsv_stream_sails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tv_stream_name"
+        app:layout_constraintTop_toBottomOf="@+id/fl_first_line"
         app:layout_constraintEnd_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
         <LinearLayout
@@ -45,18 +68,21 @@
                 android:stretchColumns="*"
                 android:layout_height="wrap_content">
                 <TableRow
-                    android:id="@+id/tr_stream_sails_period"
-                    android:background="@drawable/frame">
+                    android:id="@+id/tr_stream_sails_period">
                     <TextView
+                        android:id="@+id/tv_stream_seils_top"
                         style="@style/MidCaption"
                         android:layout_marginStart="2dp"
                         android:layout_marginEnd="5dp"
                         android:layout_gravity="center_vertical"
                         android:text="@string/sails"/>
                 </TableRow>
+                <FrameLayout
+                    android:background="@drawable/underline"
+                    android:layout_height="5dp">
+                </FrameLayout>
                 <TableRow
-                    android:id="@+id/tr_stream_sails_min"
-                    android:background="@drawable/frame">
+                    android:id="@+id/tr_stream_sails_min">
                     <TextView
                         style="@style/SmallText"
                         android:layout_marginStart="2dp"
@@ -64,8 +90,7 @@
                         android:text="@string/min"/>
                 </TableRow>
                 <TableRow
-                    android:id="@+id/tr_stream_sails_max"
-                    android:background="@drawable/frame">
+                    android:id="@+id/tr_stream_sails_max">
                     <TextView
                         style="@style/SmallText"
                         android:layout_marginStart="2dp"
@@ -73,8 +98,7 @@
                         android:text="@string/max"/>
                 </TableRow>
                 <TableRow
-                    android:id="@+id/tr_stream_sails_fix"
-                    android:background="@drawable/frame">
+                    android:id="@+id/tr_stream_sails_fix">
                     <TextView
                         style="@style/SmallText"
                         android:layout_marginStart="2dp"
@@ -82,8 +106,7 @@
                         android:text="@string/fix"/>
                 </TableRow>
                 <TableRow
-                    android:id="@+id/tr_stream_sails_price"
-                    android:background="@drawable/frame">
+                    android:id="@+id/tr_stream_sails_price">
                     <TextView
                         style="@style/SmallText"
                         android:layout_marginStart="2dp"
@@ -95,21 +118,36 @@
                     android:backgroundTint="@color/light_gray"
                     android:background="@drawable/frame">
                     <TextView
+                        android:id="@+id/tv_stream_seils_bottom"
                         style="@style/SmallText"
                         android:layout_marginStart="2dp"
                         android:layout_gravity="center_vertical"
-                        android:text="@string/solution"/>
+                        android:text="@string/solution" />
                 </TableRow>
             </TableLayout>
         </LinearLayout>
     </HorizontalScrollView>
 
+    <FrameLayout
+        android:id="@+id/fl_second_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintTop_toBottomOf="@id/hsv_stream_sails"
+        android:background="@color/gray" />
+
+    <FrameLayout
+        android:id="@+id/fl_third_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/fl_second_line"
+        android:background="@color/gray" />
+
     <HorizontalScrollView
         android:id="@+id/hsv_stream_purchases"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/hsv_stream_sails"
+        app:layout_constraintTop_toBottomOf="@+id/fl_third_line"
         app:layout_constraintEnd_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
         <LinearLayout
@@ -121,8 +159,7 @@
                 android:stretchColumns="*"
                 android:layout_height="wrap_content">
                 <TableRow
-                    android:id="@+id/tr_stream_purchases_period"
-                    android:background="@drawable/frame">
+                    android:id="@+id/tr_stream_purchases_period">
                     <TextView
                         style="@style/MidCaption"
                         android:layout_marginStart="2dp"
@@ -130,9 +167,12 @@
                         android:layout_gravity="center_vertical"
                         android:text="@string/purchases"/>
                 </TableRow>
+                <FrameLayout
+                    android:background="@drawable/underline"
+                    android:layout_height="5dp">
+                </FrameLayout>
                 <TableRow
-                    android:id="@+id/tr_stream_purchases_min"
-                    android:background="@drawable/frame">
+                    android:id="@+id/tr_stream_purchases_min">
                     <TextView
                         style="@style/SmallText"
                         android:layout_marginStart="2dp"
@@ -140,8 +180,7 @@
                         android:text="@string/min"/>
                 </TableRow>
                 <TableRow
-                    android:id="@+id/tr_stream_purchases_max"
-                    android:background="@drawable/frame">
+                    android:id="@+id/tr_stream_purchases_max">
                     <TextView
                         style="@style/SmallText"
                         android:layout_marginStart="2dp"
@@ -149,8 +188,7 @@
                         android:text="@string/max"/>
                 </TableRow>
                 <TableRow
-                    android:id="@+id/tr_stream_purchases_fix"
-                    android:background="@drawable/frame">
+                    android:id="@+id/tr_stream_purchases_fix">
                     <TextView
                         style="@style/SmallText"
                         android:layout_marginStart="2dp"
@@ -158,8 +196,7 @@
                         android:text="@string/fix"/>
                 </TableRow>
                 <TableRow
-                    android:id="@+id/tr_stream_purchases_price"
-                    android:background="@drawable/frame">
+                    android:id="@+id/tr_stream_purchases_price">
                     <TextView
                         style="@style/SmallText"
                         android:layout_marginStart="2dp"
@@ -179,4 +216,12 @@
             </TableLayout>
         </LinearLayout>
     </HorizontalScrollView>
+
+    <FrameLayout
+        android:id="@+id/fl_fourth_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintTop_toBottomOf="@id/hsv_stream_purchases"
+        android:background="@color/gray" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

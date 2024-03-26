@@ -11,14 +11,14 @@ class Stream(
     var bought: Boolean = false,
     var color: Int = Color.parseColor("#DADADA")
 ) {
-    var prices = Array<Float>(numOfPeriods) { 0f }
-    var costs = Array<Float>(numOfPeriods) { 0f }
-    var sails = Array<Float> (numOfPeriods) {0f}
-    var purchases = Array<Float> (numOfPeriods) {0f}
-    var minBoundsSales = Array<Float>(numOfPeriods) { 0f }
-    var maxBoundsSales = Array<Float>(numOfPeriods) { 0f }
-    var minBoundsPurchases = Array<Float>(numOfPeriods) { 0f }
-    var maxBoundsPurchases = Array<Float>(numOfPeriods) { 0f }
+    var prices = Array<Float>(numOfPeriods) { -1f }
+    var costs = Array<Float>(numOfPeriods) { -1f }
+    var sails = Array<Float> (numOfPeriods) {-1f}
+    var purchases = Array<Float> (numOfPeriods) {-1f}
+    var minBoundsSales = Array<Float>(numOfPeriods) { -1f }
+    var maxBoundsSales = Array<Float>(numOfPeriods) { -1f }
+    var minBoundsPurchases = Array<Float>(numOfPeriods) { -1f }
+    var maxBoundsPurchases = Array<Float>(numOfPeriods) { -1f }
     var balance: MutableMap<Column, Float> = mutableMapOf()
     var isBalanced: Boolean = false
     var isEqualed: Boolean = false

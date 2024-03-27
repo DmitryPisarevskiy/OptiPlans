@@ -7,9 +7,11 @@ import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.example.optiplans.R
 import com.example.optiplans.databinding.ActivityMainBinding
+import com.example.optiplans.entities.ModelExample
+import com.example.optiplans.entities.Stream
+import com.example.optiplans.entities.Unit
 
-class MainActivity : AppCompatActivity() {
-
+class MainActivity : AppCompatActivity(), IStreamClickListener, IUnitClickListener {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         binding.bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.home -> replaceFragment(HomeFragment())
+                R.id.home -> replaceFragment(HomeFragment(this,this))
                 R.id.schema -> replaceFragment(TableFragment())
                 R.id.table -> replaceFragment(TableFragment())
                 R.id.unit -> replaceFragment(UnitFragment())
@@ -28,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-        replaceFragment(HomeFragment())
+        replaceFragment(HomeFragment(this,this))
     }
 
     fun replaceFragment(fragment: Fragment) {
@@ -48,5 +50,15 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onStreamClick(stream: Stream) {
+        ModelExample.currentStream = stream
+        replaceFragment(StreamFragment())
+    }
+
+    override fun onUnitClick(unit: Unit) {
+        ModelExample.currentUnit = unit
+        replaceFragment(UnitFragment())
     }
 }

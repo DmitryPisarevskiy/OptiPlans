@@ -5,8 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.optiplans.databinding.RvHomeStreamsItemBinding
 import com.example.optiplans.entities.Stream
+import com.example.optiplans.view.IStreamClickListener
 
-class RVHomeStreamsAdapter(private val streams: List<Stream>): RecyclerView.Adapter<RVHomeStreamsAdapter.StreamViewHolder>() {
+class RVHomeStreamsAdapter(private val streams: List<Stream>, val streamListener: IStreamClickListener): RecyclerView.Adapter<RVHomeStreamsAdapter.StreamViewHolder>() {
     class StreamViewHolder (val binding: RvHomeStreamsItemBinding): RecyclerView.ViewHolder(binding.root) {
 
     }
@@ -21,9 +22,11 @@ class RVHomeStreamsAdapter(private val streams: List<Stream>): RecyclerView.Adap
 
     override fun onBindViewHolder(holder: StreamViewHolder, position: Int) {
         val stream = streams[position]
-        val context = holder.itemView.context
         holder.binding.tvHomeStreamsItem.text = stream.name
         holder.binding.svHomeStreamsStream.painting(stream.color)
+        holder.itemView.setOnClickListener {
+            streamListener.onStreamClick(stream)
+        }
     }
 
 }

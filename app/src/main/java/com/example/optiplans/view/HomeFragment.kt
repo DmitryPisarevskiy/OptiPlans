@@ -14,7 +14,7 @@ import com.example.optiplans.view.rw.home.RVHomeUnitsAdapter
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class HomeFragment : Fragment() {
+class HomeFragment(val streamListener: IStreamClickListener, val unitListener: IUnitClickListener) : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
 
@@ -38,9 +38,9 @@ class HomeFragment : Fragment() {
             tvHomeModelName.text = ModelExample.name
             tvHomeNumOfPeriods.text = ModelExample.numOfPeriods.toString()
             rvHomeUnits.layoutManager = GridLayoutManager(activity,2)
-            rvHomeUnits.adapter = RVHomeUnitsAdapter(ModelExample.units)
+            rvHomeUnits.adapter = RVHomeUnitsAdapter(ModelExample.units, unitListener)
             rvHomeStreams.layoutManager= GridLayoutManager(activity,2)
-            rvHomeStreams.adapter = RVHomeStreamsAdapter(ModelExample.streams)
+            rvHomeStreams.adapter = RVHomeStreamsAdapter(ModelExample.streams, streamListener)
         }
 
     }

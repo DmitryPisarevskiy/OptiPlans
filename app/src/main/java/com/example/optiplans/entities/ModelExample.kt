@@ -48,11 +48,11 @@ object ModelExample : Model("ГПНС. Февраль" ,3) {
         waterStream.costs = arrayOf(10f,10f,10f)
 
         // Column construction
-        val etnColumn:Column = Column("Переработка этана", "ETN", 3)
-        val sluColumn:Column = Column("Переработка ШФЛУ", "SLU", 3)
-        val nafColumn:Column = Column("Переработка нафты", "NAF", 3)
-        val etyColumn:Column = Column("Переработка этилена", "ETY", 3)
-        val prlColumn:Column = Column("Переработка пропилена", "PRL", 3)
+        val etnColumn:Column = Column("Переработка этана", "ETN", 3, epUnit)
+        val sluColumn:Column = Column("Переработка ШФЛУ", "SLU", 3, epUnit)
+        val nafColumn:Column = Column("Переработка нафты", "NAF", 3, epUnit)
+        val etyColumn:Column = Column("Переработка этилена", "ETY", 3, hdpeUnit)
+        val prlColumn:Column = Column("Переработка пропилена", "PRL", 3, iaaUnit)
 
         // Column coefficients
         etnColumn.strAndCoeffs.put(ethaneStream, 1f)
@@ -72,13 +72,6 @@ object ModelExample : Model("ГПНС. Февраль" ,3) {
         prlColumn.strAndCoeffs.put(propyleneStream, 1.0f)
         prlColumn.strAndCoeffs.put(waterStream, 0.85f)
         prlColumn.strAndCoeffs.put(iaaStream, -1.85f)
-
-        // Adding columns to units
-        epUnit.regimes.add(etnColumn)
-        epUnit.regimes.add(sluColumn)
-        epUnit.regimes.add(nafColumn)
-        hdpeUnit.regimes.add(etyColumn)
-        iaaUnit.regimes.add(prlColumn)
 
         // Capacities creation
         val epEtyCap = Capacity("Мощность ЭП по этилену", "ETY", 3)

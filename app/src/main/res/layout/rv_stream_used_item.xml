@@ -11,26 +11,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="5dp"
-        android:paddingLeft="20dp"
+        android:paddingStart="5dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/sv_stream_used"
         tools:text="ПЭНД"/>
 
     <com.example.optiplans.view.StreamView
         android:id="@+id/sv_stream_used"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tv_stream_used_item"
-        android:layout_width="20dp"
-        android:layout_height="20dp"/>
+        app:layout_constraintStart_toEndOf="@id/fl_stream_used"
+        android:layout_width="15dp"
+        android:layout_height="15dp"/>
 
     <FrameLayout
         android:id="@+id/fl_stream_used"
-        app:layout_constraintStart_toStartOf="@id/tv_stream_used_item"
-        app:layout_constraintEnd_toEndOf="@id/tv_stream_used_item"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_stream_used_item"
         android:background="@color/blue"
-        android:layout_width="0dp"
+        android:layout_width="50dp"
         android:layout_height="2dp"/>
 
     <TextView
@@ -39,8 +38,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/fl_stream_used"
-        app:layout_constraintEnd_toStartOf="@id/sv_stream_used"
+        app:layout_constraintStart_toEndOf="@id/sv_stream_used"
         android:paddingBottom="5dp"
+        android:paddingStart="5dp"
         tools:text="120"/>
 
     <FrameLayout

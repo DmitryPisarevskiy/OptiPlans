@@ -1,4 +1,4 @@
-package com.example.optiplans.view.rw.table
+package com.example.optiplans.view.rv
 
 import android.os.Build
 import android.view.LayoutInflater
@@ -14,8 +14,6 @@ import com.example.optiplans.databinding.RvTableItemBinding
 import com.example.optiplans.entities.Model
 import com.example.optiplans.entities.Stream
 import com.example.optiplans.view.StreamView
-import com.google.android.material.transition.Hold
-import org.w3c.dom.Text
 
 class RVTableAdapter(val model: Model) : RecyclerView.Adapter<RVTableAdapter.TableItemHolder>() {
     class TableItemHolder(val binding: RvTableItemBinding) : RecyclerView.ViewHolder(binding.root) {

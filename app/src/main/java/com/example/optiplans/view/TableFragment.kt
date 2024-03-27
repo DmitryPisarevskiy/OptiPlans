@@ -6,10 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.optiplans.databinding.FragmentTableBinding
 import com.example.optiplans.entities.ModelExample
-import com.example.optiplans.view.rw.table.RVTableAdapter
+import com.example.optiplans.view.rv.RVTableAdapter
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.

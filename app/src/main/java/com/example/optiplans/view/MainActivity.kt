@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity(), IStreamClickListener, IUnitClickListen
                 R.id.schema -> replaceFragment(TableFragment())
                 R.id.table -> replaceFragment(TableFragment())
                 R.id.unit -> replaceFragment(UnitFragment())
-                R.id.stream -> replaceFragment(StreamFragment())
+                R.id.stream -> replaceFragment(StreamFragment(this))
                 else -> {}
             }
             true
@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity(), IStreamClickListener, IUnitClickListen
 
     override fun onStreamClick(stream: Stream) {
         ModelExample.currentStream = stream
-        replaceFragment(StreamFragment())
+        replaceFragment(StreamFragment(this))
     }
 
     override fun onUnitClick(unit: Unit) {

@@ -2,7 +2,6 @@ package com.example.optiplans.view
 
 import android.os.Build
 import android.os.Bundle
-import android.text.Layout
 import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,12 +10,15 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.optiplans.R
 import com.example.optiplans.databinding.FragmentStreamBinding
 import com.example.optiplans.entities.ModelExample
 import com.example.optiplans.entities.Stream
+import com.example.optiplans.view.rv.RVStreamProducedAdapter
+import com.example.optiplans.view.rv.RVStreamUsedAdapter
 
-class StreamFragment : Fragment() {
+class StreamFragment(val unitListener: IUnitClickListener) : Fragment() {
     var currentStream: Stream? = null
     lateinit var binding: FragmentStreamBinding
 
@@ -65,6 +67,12 @@ class StreamFragment : Fragment() {
         currentStream?.maxBoundsPurchases?.apply { addTableItem(binding.trStreamPurchasesMax , this) }
         currentStream?.costs?.apply { addTableItem(binding.trStreamPurchasesPrice, this ) }
         currentStream?.purchases?.apply { addTableItem(binding.trStreamPurchasesSolution, this ) }
+        currentStream?.apply {
+            binding.rvStreamProduced.layoutManager= LinearLayoutManager(activity)
+            binding.rvStreamProduced.adapter = RVStreamProducedAdapter(this, 1, unitListener)
+            binding.rvStreamUsed.layoutManager= LinearLayoutManager(activity)
+            binding.rvStreamUsed.adapter = RVStreamUsedAdapter(this, 1, unitListener)
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -80,8 +88,8 @@ class StreamFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            StreamFragment().apply {
+        fun newInstance(unitListener: IUnitClickListener) =
+            StreamFragment(unitListener).apply {
                 arguments = Bundle().apply {
                 }
             }

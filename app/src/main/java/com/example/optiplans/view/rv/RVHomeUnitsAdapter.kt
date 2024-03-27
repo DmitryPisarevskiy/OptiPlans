@@ -1,4 +1,4 @@
-package com.example.optiplans.view.rw.home
+package com.example.optiplans.view.rv
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

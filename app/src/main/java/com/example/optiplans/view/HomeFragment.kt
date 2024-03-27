@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.optiplans.databinding.FragmentHomeBinding
 import com.example.optiplans.entities.ModelExample
-import com.example.optiplans.view.rw.home.RVHomeStreamsAdapter
-import com.example.optiplans.view.rw.home.RVHomeUnitsAdapter
+import com.example.optiplans.view.rv.RVHomeStreamsAdapter
+import com.example.optiplans.view.rv.RVHomeUnitsAdapter
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.

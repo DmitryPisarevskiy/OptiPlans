@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="5dp"
-        android:paddingEnd="20dp"
+        android:paddingEnd="5dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toStartOf="@id/sv_stream_produced"
         tools:text="ПЭНД"/>
@@ -20,28 +20,27 @@
         android:id="@+id/sv_stream_produced"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_width="20dp"
-        android:layout_height="20dp"/>
+        app:layout_constraintEnd_toStartOf="@id/fl_stream_produced"
+        android:layout_width="15dp"
+        android:layout_height="15dp"/>
 
     <FrameLayout
         android:id="@+id/fl_stream_produced"
-        app:layout_constraintStart_toStartOf="@id/tv_stream_produced_item"
-        app:layout_constraintEnd_toEndOf="@id/tv_stream_produced_item"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_stream_produced_item"
         android:background="@color/blue"
-        android:layout_width="0dp"
+        android:layout_width="50dp"
         android:layout_height="2dp"/>
 
     <TextView
         android:id="@+id/tv_stream_produced_value"
         style="@style/SmallText"
-        android:paddingEnd="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/fl_stream_produced"
         app:layout_constraintEnd_toStartOf="@id/sv_stream_produced"
         android:paddingBottom="5dp"
+        android:paddingEnd="5dp"
         tools:text="120"/>
 
     <FrameLayout

@@ -23,7 +23,7 @@ class RVHomeUnitsAdapter(private val units: List<Unit>, val unitListener: IUnitC
         val unit = units[position]
         val context = holder.itemView.context
         holder.binding.tvHomeUnitsItem.text = unit.name
-        holder.binding.uvHomeUnitsUnit.setUnit(unit.color)
+        holder.binding.uvHomeUnitsUnit.setColor(unit.color)
         holder.itemView.setOnClickListener {
             unitListener.onUnitClick(unit)
         }

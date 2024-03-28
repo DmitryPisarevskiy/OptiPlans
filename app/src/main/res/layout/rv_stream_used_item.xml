@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="5dp"
         android:paddingStart="5dp"
+        android:paddingEnd="5dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/sv_stream_used"
         tools:text="ПЭНД"/>
@@ -30,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_stream_used_item"
         android:background="@color/blue"
         android:layout_width="50dp"
-        android:layout_height="2dp"/>
+        android:layout_height="1dp"/>
 
     <TextView
         android:id="@+id/tv_stream_used_value"
@@ -41,6 +42,7 @@
         app:layout_constraintStart_toEndOf="@id/sv_stream_used"
         android:paddingBottom="5dp"
         android:paddingStart="5dp"
+        android:paddingEnd="5dp"
         tools:text="120"/>
 
     <FrameLayout
@@ -49,7 +51,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:background="@color/blue"
-        android:layout_width="2dp"
+        android:layout_width="1dp"
         android:layout_height="0dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

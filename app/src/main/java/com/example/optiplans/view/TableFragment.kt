@@ -13,7 +13,7 @@ import com.example.optiplans.view.rv.RVTableAdapter
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
-class TableFragment : Fragment() {
+class TableFragment(val unitListener: IUnitClickListener): Fragment() {
 
     private var _binding: FragmentTableBinding? = null
     private val binding get() = _binding!!
@@ -30,7 +30,7 @@ class TableFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         with (binding) {
             rvTable.layoutManager = GridLayoutManager(activity, 2)
-            rvTable.adapter = RVTableAdapter(ModelExample)
+            rvTable.adapter = RVTableAdapter(ModelExample, unitListener)
         }
     }
 

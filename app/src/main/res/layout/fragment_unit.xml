@@ -9,72 +9,92 @@
     <TextView
         android:id="@+id/tv_unit_tag"
         style="@style/GrayCaption"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="PND" />
 
     <TextView
         android:id="@+id/tv_unit_name"
         style="@style/MidCaption"
-        app:layout_constraintTop_toBottomOf="@+id/tv_unit_tag"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_unit_tag"
         tools:text="Полиэтилен низкого давления" />
-
-    <HorizontalScrollView
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tv_unit_balance"
+        style="@style/MidCaption"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tv_unit_name"
-        app:layout_constraintEnd_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_unit_name"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="2dp"
+        android:text="@string/balance"/>
+
+    <TextView
+        android:id="@+id/tv_unit_period"
+        style="@style/SmallText"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintTop_toTopOf="@id/fl_unit_spinner"
+        app:layout_constraintBottom_toBottomOf="@id/fl_unit_spinner"
+        app:layout_constraintEnd_toStartOf="@id/fl_unit_spinner"
+        android:text="@string/stream_period"/>
+
+    <FrameLayout
+        android:id="@+id/fl_unit_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/frame"
+        app:layout_constraintTop_toBottomOf="@id/tv_unit_name"
         app:layout_constraintEnd_toEndOf="parent">
-        <LinearLayout
+        <Spinner
+            android:id="@+id/s_unit_period"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"/>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fl_unit_spinner"
+        android:layout_marginTop="10dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_unit_feeds"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-            <TableLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <TableRow
-                    android:id="@+id/tr_stream_sails_period">
-                    <TextView
-                        style="@style/SmallText"
-                        android:text="@string/period"/>
-                </TableRow>
-                <TableRow
-                    android:id="@+id/tr_stream_min">
-                    <TextView
-                        style="@style/SmallText"
-                        android:text="@string/min"/>
-                </TableRow>
-                <TableRow
-                    android:id="@+id/tr_stream_max">
-                    <TextView
-                        style="@style/SmallText"
-                        android:text="@string/max"/>
-                </TableRow>
-                <TableRow
-                    android:id="@+id/tr_stream_fix">
-                    <TextView
-                        style="@style/SmallText"
-                        android:text="@string/fix"/>
-                </TableRow>
-                <TableRow
-                    android:id="@+id/stream_price">
-                    <TextView
-                        style="@style/SmallText"
-                        android:text="@string/price"/>
-                </TableRow>
-            </TableLayout>
-        </LinearLayout>
-    </HorizontalScrollView>
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp" />
+
+        <com.example.optiplans.view.UnitView
+            android:id="@+id/uv_unit"
+            android:layout_width="50dp"
+            android:layout_height="150dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_unit_products"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp" />
+
+    </LinearLayout>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

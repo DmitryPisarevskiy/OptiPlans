@@ -44,6 +44,9 @@ class RVStreamUsedAdapter (private val stream: Stream, var periodNum: Int, val u
                 holder.binding.tvStreamUsedItem.text =stream.balance.entries.elementAt(j-1).key.parentUnit.name
                 holder.binding.tvStreamUsedValue.text =(stream.balance.entries.elementAt(j-1).key.activities[periodNum] * stream.balance.entries.elementAt(j-1).value).toString()
             }
+            holder.binding.root.setOnClickListener {
+                unitListener.onUnitClick(stream.balance.entries.elementAt(j-1).key.parentUnit)
+            }
         }
         holder.binding.svStreamUsed.painting(stream.color)
         if ((position==0) && (itemCount==1)) {

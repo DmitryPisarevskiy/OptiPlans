@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -34,7 +33,7 @@ class StreamFragment(val unitListener: IUnitClickListener) : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentStreamBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -111,14 +110,5 @@ class StreamFragment(val unitListener: IUnitClickListener) : Fragment() {
             textView.setTextAppearance(R.style.TableText)
             layout.addView(textView)
         }
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance(unitListener: IUnitClickListener) =
-            StreamFragment(unitListener).apply {
-                arguments = Bundle().apply {
-                }
-            }
     }
 }

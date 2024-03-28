@@ -18,8 +18,6 @@ class HomeFragment(val streamListener: IStreamClickListener, val unitListener: I
 
     private var _binding: FragmentHomeBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -42,7 +40,6 @@ class HomeFragment(val streamListener: IStreamClickListener, val unitListener: I
             rvHomeStreams.layoutManager= GridLayoutManager(activity,2)
             rvHomeStreams.adapter = RVHomeStreamsAdapter(ModelExample.streams, streamListener)
         }
-
     }
 
     override fun onDestroyView() {

@@ -24,4 +24,10 @@
     <string name="tag">тэг:</string>
     <string name="balance">Баланс</string>
     <string name="stream_period">Период:</string>
+    <string name="schema">schema</string>
+    <string name="home">home</string>
+    <string name="table">table\n</string>
+    <string name="unit">unit</string>
+    <string name="stream">stream</string>
+    <string name="iv_schema_description">Имитация схемы</string>
 </resources>

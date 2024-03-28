@@ -22,9 +22,9 @@ class MainActivity : AppCompatActivity(), IStreamClickListener, IUnitClickListen
         binding.bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> replaceFragment(HomeFragment(this,this))
-                R.id.schema -> replaceFragment(TableFragment())
-                R.id.table -> replaceFragment(TableFragment())
-                R.id.unit -> replaceFragment(UnitFragment())
+                R.id.schema -> replaceFragment(SchemaFragment())
+                R.id.table -> replaceFragment(TableFragment(this))
+                R.id.unit -> replaceFragment(UnitFragment(this))
                 R.id.stream -> replaceFragment(StreamFragment(this))
                 else -> {}
             }
@@ -54,11 +54,11 @@ class MainActivity : AppCompatActivity(), IStreamClickListener, IUnitClickListen
 
     override fun onStreamClick(stream: Stream) {
         ModelExample.currentStream = stream
-        replaceFragment(StreamFragment(this))
+        binding.bottomNav.selectedItemId = R.id.stream
     }
 
     override fun onUnitClick(unit: Unit) {
         ModelExample.currentUnit = unit
-        replaceFragment(UnitFragment())
+        binding.bottomNav.selectedItemId = R.id.unit
     }
 }

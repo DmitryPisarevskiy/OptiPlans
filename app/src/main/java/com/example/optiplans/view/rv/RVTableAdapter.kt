@@ -13,9 +13,10 @@ import com.example.optiplans.R
 import com.example.optiplans.databinding.RvTableItemBinding
 import com.example.optiplans.entities.Model
 import com.example.optiplans.entities.Stream
+import com.example.optiplans.view.IUnitClickListener
 import com.example.optiplans.view.StreamView
 
-class RVTableAdapter(val model: Model) : RecyclerView.Adapter<RVTableAdapter.TableItemHolder>() {
+class RVTableAdapter(val model: Model, val unitListener: IUnitClickListener) : RecyclerView.Adapter<RVTableAdapter.TableItemHolder>() {
     class TableItemHolder(val binding: RvTableItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun drawStreams(s: Stream) {
 
@@ -35,7 +36,7 @@ class RVTableAdapter(val model: Model) : RecyclerView.Adapter<RVTableAdapter.Tab
         val unit = model.units[position]
         holder.binding.tvTableItemUnitTag.text = unit.tag
         holder.binding.tvTableItemUnitName.text = unit.name
-        holder.binding.uvTableUnitsUnit.setUnit(unit.color)
+        holder.binding.uvTableUnitsUnit.setColor(unit.color)
         for (i in model.units[position].feeds.entries.indices) {
             val stream = model.units[position].feeds.entries.elementAt(i).key
             val streamView = StreamView(holder.itemView.context)
@@ -76,11 +77,8 @@ class RVTableAdapter(val model: Model) : RecyclerView.Adapter<RVTableAdapter.Tab
             set.centerVertically(textView.id, streamView.id)
             set.applyTo(holder.binding.root)
         }
-
-        val table = holder.binding.tlTableItemCaps
-//        table.isStretchAllColumns = true
-//        table.isShrinkAllColumns = true
-
-        val tableTitle = holder.binding.trTableItemCapsTitle
+        holder.itemView.setOnClickListener {
+            unitListener.onUnitClick(model.units[position])
+        }
     }
 }

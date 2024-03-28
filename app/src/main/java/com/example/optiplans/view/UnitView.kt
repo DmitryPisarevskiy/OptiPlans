@@ -28,7 +28,7 @@ class UnitView @JvmOverloads constructor(
         canvas.drawRoundRect(width*0.1f,height*0.1f,width*0.9f,height*0.9f,width*0.1f,width*0.1f,strokePaint)
     }
 
-    fun setUnit(fColor: Int) {
+    fun setColor(fColor: Int) {
         fillPaint.color = fColor
         invalidate()
     }

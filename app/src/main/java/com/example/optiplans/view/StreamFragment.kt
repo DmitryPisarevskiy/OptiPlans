@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
+import android.widget.ArrayAdapter
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
@@ -69,9 +72,33 @@ class StreamFragment(val unitListener: IUnitClickListener) : Fragment() {
         currentStream?.purchases?.apply { addTableItem(binding.trStreamPurchasesSolution, this ) }
         currentStream?.apply {
             binding.rvStreamProduced.layoutManager= LinearLayoutManager(activity)
-            binding.rvStreamProduced.adapter = RVStreamProducedAdapter(this, 1, unitListener)
+            binding.rvStreamProduced.adapter = RVStreamProducedAdapter(this, ModelExample.currentPeriodNum, unitListener)
             binding.rvStreamUsed.layoutManager= LinearLayoutManager(activity)
-            binding.rvStreamUsed.adapter = RVStreamUsedAdapter(this, 1, unitListener)
+            binding.rvStreamUsed.adapter = RVStreamUsedAdapter(this, ModelExample.currentPeriodNum, unitListener)
+        }
+        val spinnerData = Array<String>(ModelExample.periods.size+1) {""}
+        var sum = 0
+        for (i in ModelExample.periods.indices) {
+            spinnerData[i] = (i+1).toString() + " (" + ModelExample.periods[i] + " дней)"
+            sum+=ModelExample.periods[i]
+        }
+        spinnerData[ModelExample.periods.size] = "Всего " + "(" + sum.toString() + " дней)"
+        val arrayAdapter: ArrayAdapter<String> = ArrayAdapter(this.requireContext(),android.R.layout.simple_spinner_item, spinnerData)
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.sStreamPeriod.adapter = arrayAdapter
+        binding.sStreamPeriod.prompt = "Выберите период"
+        binding.sStreamPeriod.setSelection(ModelExample.currentPeriodNum)
+        binding.sStreamPeriod.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                ModelExample.currentPeriodNum = p2
+                currentStream?.apply {
+                    binding.rvStreamProduced.adapter = RVStreamProducedAdapter(this, ModelExample.currentPeriodNum, unitListener)
+                    binding.rvStreamUsed.adapter = RVStreamUsedAdapter(this, ModelExample.currentPeriodNum, unitListener)
+                }
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+
         }
     }
 

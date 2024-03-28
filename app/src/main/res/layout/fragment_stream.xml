@@ -233,15 +233,42 @@
         android:background="@color/gray" />
 
     <TextView
-        style="@style/MidCaption"
         android:id="@+id/tv_stream_balance"
+        style="@style/MidCaption"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/fl_stream_fifth_line"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="2dp"
-        android:text="@string/balance"
-        tools:text = "Баланс"/>
+        android:text="@string/balance"/>
+
+    <TextView
+        android:id="@+id/tv_stream_period"
+        style="@style/SmallText"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintTop_toTopOf="@id/fl_stream_spinner"
+        app:layout_constraintBottom_toBottomOf="@id/fl_stream_spinner"
+        app:layout_constraintEnd_toStartOf="@id/fl_stream_spinner"
+        android:text="@string/stream_period"/>
+
+    <FrameLayout
+        android:id="@+id/fl_stream_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/frame"
+        app:layout_constraintTop_toBottomOf="@id/fl_stream_fifth_line"
+        app:layout_constraintEnd_toEndOf="parent">
+        <Spinner
+            android:id="@+id/s_stream_period"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/period"/>
+    </FrameLayout>
+
 
     <LinearLayout
         android:id="@+id/fl_stream_balance"
@@ -250,6 +277,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_gravity="center">

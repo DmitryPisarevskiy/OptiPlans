@@ -6,6 +6,7 @@ import kotlinx.coroutines.newSingleThreadContext
 object ModelExample : Model("ГПНС. Февраль" ,3) {
     var currentStream: Stream? = null
     var currentUnit: Unit? = null
+    var currentPeriodNum = 0
     init {
         // Periods initialization
         this.periods[0] = 10

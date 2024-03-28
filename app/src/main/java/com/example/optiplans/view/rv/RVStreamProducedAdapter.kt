@@ -30,7 +30,7 @@ class RVStreamProducedAdapter (private val stream: Stream, val periodNum: Int, v
         val index = if (stream.bought) {position-1} else {position}
         if ((position == 0) && (stream.bought)) {
             holder.binding.tvStreamProducedItem.text = "Покупки"
-            holder.binding.tvStreamProducedValue.text = stream.purchases[periodNum - 1].toString()
+            holder.binding.tvStreamProducedValue.text = stream.purchases[periodNum].toString()
         } else {
             var i = -1
             var j = 0
@@ -42,7 +42,7 @@ class RVStreamProducedAdapter (private val stream: Stream, val periodNum: Int, v
             } while ((i<index) && (i<=itemCount-1) && (j<=stream.balance.entries.size-1))
             if (i==index) {
                 holder.binding.tvStreamProducedItem.text = stream.balance.entries.elementAt(j-1).key.parentUnit.name
-                holder.binding.tvStreamProducedValue.text = (-stream.balance.entries.elementAt(j-1).key.activities[periodNum-1]*stream.balance.entries.elementAt(j-1).value).toString()
+                holder.binding.tvStreamProducedValue.text = (-stream.balance.entries.elementAt(j-1).key.activities[periodNum]*stream.balance.entries.elementAt(j-1).value).toString()
             }
         }
         holder.binding.svStreamProduced.painting(stream.color)

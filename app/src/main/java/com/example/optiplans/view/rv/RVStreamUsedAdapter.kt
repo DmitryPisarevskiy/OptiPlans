@@ -8,7 +8,7 @@ import com.example.optiplans.databinding.RvStreamUsedItemBinding
 import com.example.optiplans.entities.Stream
 import com.example.optiplans.view.IUnitClickListener
 
-class RVStreamUsedAdapter (private val stream: Stream, val periodNum: Int, val unitListener: IUnitClickListener): RecyclerView.Adapter<RVStreamUsedAdapter.StreamUsedViewHolder>() {
+class RVStreamUsedAdapter (private val stream: Stream, var periodNum: Int, val unitListener: IUnitClickListener): RecyclerView.Adapter<RVStreamUsedAdapter.StreamUsedViewHolder>() {
     class StreamUsedViewHolder (val binding: RvStreamUsedItemBinding): RecyclerView.ViewHolder(binding.root) {
     }
 
@@ -30,7 +30,7 @@ class RVStreamUsedAdapter (private val stream: Stream, val periodNum: Int, val u
         val index = if (stream.sold) {position-1} else {position}
         if ((stream.sold) && (position==0)) {
             holder.binding.tvStreamUsedItem.text = "Продажи"
-            holder.binding.tvStreamUsedValue.text = stream.sails[periodNum - 1].toString()
+            holder.binding.tvStreamUsedValue.text = stream.sails[periodNum].toString()
         } else {
             var i = -1
             var j = 0
@@ -42,7 +42,7 @@ class RVStreamUsedAdapter (private val stream: Stream, val periodNum: Int, val u
             } while ((i < index) && (i <= itemCount - 1) && (j <= stream.balance.entries.size - 1))
             if (i == index) {
                 holder.binding.tvStreamUsedItem.text =stream.balance.entries.elementAt(j-1).key.parentUnit.name
-                holder.binding.tvStreamUsedValue.text =(stream.balance.entries.elementAt(j-1).key.activities[periodNum-1] * stream.balance.entries.elementAt(j-1).value).toString()
+                holder.binding.tvStreamUsedValue.text =(stream.balance.entries.elementAt(j-1).key.activities[periodNum] * stream.balance.entries.elementAt(j-1).value).toString()
             }
         }
         holder.binding.svStreamUsed.painting(stream.color)

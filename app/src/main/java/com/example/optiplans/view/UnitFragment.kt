@@ -11,11 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.optiplans.databinding.FragmentUnitBinding
 import com.example.optiplans.entities.ModelExample
 import com.example.optiplans.entities.Unit
+import com.example.optiplans.entities.collapseItem
 import com.example.optiplans.view.rv.RVUnitBalanceAdapter
 
 class UnitFragment(val streamListener: IStreamClickListener) : Fragment() {
     private lateinit var binding: FragmentUnitBinding
     var currentUnit: Unit? = null
+    private var showBalance = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +69,9 @@ class UnitFragment(val streamListener: IStreamClickListener) : Fragment() {
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }
         }
-
+        binding.ivUnitBalance.setOnClickListener {
+            collapseItem(binding.ivUnitBalance, binding.llUnitBalance, !showBalance)
+            showBalance=!showBalance
+        }
     }
 }

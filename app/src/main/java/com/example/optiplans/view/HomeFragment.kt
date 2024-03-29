@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.optiplans.databinding.FragmentHomeBinding
 import com.example.optiplans.entities.ModelExample
+import com.example.optiplans.entities.collapseItem
 import com.example.optiplans.view.rv.RVHomeStreamsAdapter
 import com.example.optiplans.view.rv.RVHomeUnitsAdapter
 
@@ -15,8 +16,9 @@ import com.example.optiplans.view.rv.RVHomeUnitsAdapter
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 class HomeFragment(val streamListener: IStreamClickListener, val unitListener: IUnitClickListener) : Fragment() {
-
     private var _binding: FragmentHomeBinding? = null
+    private var showStreams: Boolean = true
+    private var showUnits: Boolean = true
 
     private val binding get() = _binding!!
 
@@ -39,6 +41,22 @@ class HomeFragment(val streamListener: IStreamClickListener, val unitListener: I
             rvHomeUnits.adapter = RVHomeUnitsAdapter(ModelExample.units, unitListener)
             rvHomeStreams.layoutManager= GridLayoutManager(activity,2)
             rvHomeStreams.adapter = RVHomeStreamsAdapter(ModelExample.streams, streamListener)
+            ivHomeStreams.setOnClickListener {
+                collapseItem(ivHomeStreams, rvHomeStreams, !showStreams)
+                showStreams=!showStreams
+            }
+            tvHomeStreams.setOnClickListener {
+                collapseItem(ivHomeStreams, rvHomeStreams, !showStreams)
+                showStreams=!showStreams
+            }
+            ivHomeUnits.setOnClickListener {
+                collapseItem(ivHomeUnits, rvHomeUnits, !showUnits)
+                showUnits=!showUnits
+            }
+            tvHomeUnits.setOnClickListener {
+                collapseItem(ivHomeUnits, rvHomeUnits, !showUnits)
+                showUnits=!showUnits
+            }
         }
     }
 

@@ -51,6 +51,7 @@ class StreamFragment(val unitListener: IUnitClickListener) : Fragment() {
         currentStream = ModelExample.currentStream
         binding.tvStreamTag.text = currentStream?.tag?:""
         binding.tvStreamName.text = currentStream?.name?:""
+        currentStream?.apply { binding.svStreamCaption.painting(this.color) }
         var iMax = currentStream?.prices?.size ?: 1
         iMax--
         for (i in 0..iMax) {
@@ -112,11 +113,23 @@ class StreamFragment(val unitListener: IUnitClickListener) : Fragment() {
             collapseItem(binding.ivStreamPurchasesTop, binding.hsvStreamPurchases, !showPurchases)
             showPurchases=!showPurchases
         }
+        binding.tvStreamPurchasesTop.setOnClickListener {
+            collapseItem(binding.ivStreamPurchasesTop, binding.hsvStreamPurchases, !showPurchases)
+            showPurchases=!showPurchases
+        }
         binding.ivStreamSeilsTop.setOnClickListener {
             collapseItem(binding.ivStreamSeilsTop, binding.hsvStreamSails, !showSails)
             showSails=!showSails
         }
+        binding.tvStreamSeilsTop.setOnClickListener {
+            collapseItem(binding.ivStreamSeilsTop, binding.hsvStreamSails, !showSails)
+            showSails=!showSails
+        }
         binding.ivStreamBalance.setOnClickListener {
+            collapseItem(binding.ivStreamBalance, binding.llStreamBalance, !showBalance)
+            showBalance=!showBalance
+        }
+        binding.tvStreamBalance.setOnClickListener {
             collapseItem(binding.ivStreamBalance, binding.llStreamBalance, !showBalance)
             showBalance=!showBalance
         }

@@ -40,6 +40,7 @@ class UnitFragment(val streamListener: IStreamClickListener) : Fragment() {
         binding.tvUnitName.text = currentUnit?.name?:""
         currentUnit?.let {
             binding.uvUnit.setColor(it.color)
+            binding.uvUnitCaption.setColor(it.color)
             binding.rvUnitFeeds.layoutManager = LinearLayoutManager (activity)
             binding.rvUnitFeeds.adapter = RVUnitBalanceAdapter(it, isFeeds = true, ModelExample.currentPeriodNum, streamListener)
             binding.rvUnitProducts.layoutManager = LinearLayoutManager (activity)
@@ -70,6 +71,10 @@ class UnitFragment(val streamListener: IStreamClickListener) : Fragment() {
             }
         }
         binding.ivUnitBalance.setOnClickListener {
+            collapseItem(binding.ivUnitBalance, binding.llUnitBalance, !showBalance)
+            showBalance=!showBalance
+        }
+        binding.tvUnitBalance.setOnClickListener {
             collapseItem(binding.ivUnitBalance, binding.llUnitBalance, !showBalance)
             showBalance=!showBalance
         }

@@ -38,16 +38,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_home_model_name" />
 
+    <FrameLayout
+        android:id="@+id/fl_home_units_top"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_home_num_of_periods_label"
+        android:background="@color/gray" />
+
     <TextView
         android:id="@+id/tv_home_units"
         style="@style/SmallCaption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
         android:text="@string/tv_home_units"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_home_num_of_periods_label"/>
+        app:layout_constraintTop_toBottomOf="@+id/fl_home_units_top" />
+
+    <ImageView
+        android:id="@+id/iv_home_units"
+        android:layout_marginStart="5dp"
+        android:layout_width="10dp"
+        android:layout_height="5dp"
+        app:layout_constraintTop_toTopOf="@id/tv_home_units"
+        app:layout_constraintBottom_toBottomOf="@id/tv_home_units"
+        app:layout_constraintStart_toEndOf="@id/tv_home_units"
+        android:background="@drawable/button_collapse"
+        android:layout_gravity="center_vertical"
+        android:text="@string/sails"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_home_units"
@@ -56,8 +75,22 @@
         android:layout_marginStart="8dp"
         app:layout_constraintTop_toBottomOf="@+id/tv_home_units"
         app:layout_constraintStart_toStartOf="parent"
-        tools:listitem="@layout/rv_home_units_item"
         />
+
+    <FrameLayout
+        android:id="@+id/fl_home_units_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintTop_toBottomOf="@id/rv_home_units"
+        android:background="@color/gray" />
+
+    <FrameLayout
+        android:id="@+id/fl_home_streams_top"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/fl_home_units_bottom"
+        android:background="@color/gray" />
 
     <TextView
         android:id="@+id/tv_home_streams"
@@ -65,10 +98,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
         android:text="@string/tv_home_streams"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_home_units" />
+        app:layout_constraintTop_toBottomOf="@+id/fl_home_streams_top" />
+
+    <ImageView
+        android:id="@+id/iv_home_streams"
+        android:layout_marginStart="5dp"
+        android:layout_width="10dp"
+        android:layout_height="5dp"
+        app:layout_constraintTop_toTopOf="@id/tv_home_streams"
+        app:layout_constraintBottom_toBottomOf="@id/tv_home_streams"
+        app:layout_constraintStart_toEndOf="@id/tv_home_streams"
+        android:background="@drawable/button_collapse"
+        android:layout_gravity="center_vertical"
+        android:text="@string/sails"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_home_streams"
@@ -79,6 +123,13 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:listitem="@layout/rv_home_streams_item"
         />
+
+    <FrameLayout
+        android:id="@+id/fl_home_streams_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintTop_toBottomOf="@id/rv_home_streams"
+        android:background="@color/gray" />
 
     <TextView
         android:id="@+id/tv_home_num_of_periods"

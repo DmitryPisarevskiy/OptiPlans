@@ -18,8 +18,8 @@
     <string name="max">max</string>
     <string name="fix">fix</string>
     <string name="price">цена</string>
-    <string name="sails">Продажи</string>
-    <string name="purchases">Покупки</string>
+    <string name="sail">Продажа</string>
+    <string name="purchase">Покупка</string>
     <string name="solution">решение</string>
     <string name="tag">тэг:</string>
     <string name="balance">Баланс</string>
@@ -31,4 +31,5 @@
     <string name="stream">stream</string>
     <string name="iv_schema_description">Имитация схемы</string>
     <string name="button_collapse_description">кнопка свернуть/развернуть</string>
+    <string name="caps">Мощности</string>
 </resources>

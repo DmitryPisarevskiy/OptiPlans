@@ -1,6 +1,7 @@
 package com.example.optiplans.view.rv
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.RecyclerView
@@ -30,12 +31,14 @@ class RVStreamUsedAdapter (private val stream: Stream, var periodNum: Int, val u
             if ((stream.sold) && (position==0)) {
                 tvStreamUsedItem.text = "Продажи"
                 tvStreamUsedValue.text = stream.sails[periodNum].toString()
+                uvStreamUsed.visibility = View.GONE
             } else {
                 tvStreamUsedItem.text =stream.spendingUnits.entries.elementAt(index).key.name
                 tvStreamUsedValue.text =stream.spendingUnits.entries.elementAt(index).value[periodNum].toString()
                 root.setOnClickListener {
                     unitListener.onUnitClick(stream.spendingUnits.entries.elementAt(index).key)
                 }
+                uvStreamUsed.setColor(stream.spendingUnits.entries.elementAt(index).key.color)
             }
             svStreamUsed.painting(stream.color)
             if ((position==0) && (itemCount==1)) {

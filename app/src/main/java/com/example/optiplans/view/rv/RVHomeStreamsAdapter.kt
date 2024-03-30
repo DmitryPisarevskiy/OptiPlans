@@ -21,12 +21,13 @@ class RVHomeStreamsAdapter(private val streams: List<Stream>, val streamListener
     override fun getItemCount(): Int = streams.size
 
     override fun onBindViewHolder(holder: StreamViewHolder, position: Int) {
-        val stream = streams[position]
-        holder.binding.tvHomeStreamsItem.text = stream.name
-        holder.binding.svHomeStreamsStream.painting(stream.color)
-        holder.itemView.setOnClickListener {
-            streamListener.onStreamClick(stream)
+        with (holder.binding) {
+            val stream = streams[position]
+            tvHomeStreamsItem.text = stream.name
+            svHomeStreamsStream.painting(stream.color)
+            root.setOnClickListener {
+                streamListener.onStreamClick(stream)
+            }
         }
     }
-
 }

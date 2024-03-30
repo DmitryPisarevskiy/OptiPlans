@@ -20,50 +20,41 @@ class RVStreamUsedAdapter (private val stream: Stream, var periodNum: Int, val u
 
     override fun getItemCount(): Int {
         var count = if (stream.sold) {1} else {0}
-        stream.balance.entries.forEach {
-            if (it.value>0) {count++}
-        }
+        count+=stream.spendingUnits.size
         return count
     }
 
     override fun onBindViewHolder(holder: StreamUsedViewHolder, position: Int) {
-        val index = if (stream.sold) {position-1} else {position}
-        if ((stream.sold) && (position==0)) {
-            holder.binding.tvStreamUsedItem.text = "Продажи"
-            holder.binding.tvStreamUsedValue.text = stream.sails[periodNum].toString()
-        } else {
-            var i = -1
-            var j = 0
-            do {
-                if (stream.balance.entries.elementAt(j).value > 0) {
-                    i++
+        with (holder.binding) {
+            val index = if (stream.sold) {position-1} else {position}
+            if ((stream.sold) && (position==0)) {
+                tvStreamUsedItem.text = "Продажи"
+                tvStreamUsedValue.text = stream.sails[periodNum].toString()
+            } else {
+                tvStreamUsedItem.text =stream.spendingUnits.entries.elementAt(index).key.name
+                tvStreamUsedValue.text =stream.spendingUnits.entries.elementAt(index).value[periodNum].toString()
+                root.setOnClickListener {
+                    unitListener.onUnitClick(stream.spendingUnits.entries.elementAt(index).key)
                 }
-                j++
-            } while ((i < index) && (i <= itemCount - 1) && (j <= stream.balance.entries.size - 1))
-            if (i == index) {
-                holder.binding.tvStreamUsedItem.text =stream.balance.entries.elementAt(j-1).key.parentUnit.name
-                holder.binding.tvStreamUsedValue.text =(stream.balance.entries.elementAt(j-1).key.activities[periodNum] * stream.balance.entries.elementAt(j-1).value).toString()
             }
-            holder.binding.root.setOnClickListener {
-                unitListener.onUnitClick(stream.balance.entries.elementAt(j-1).key.parentUnit)
+            svStreamUsed.painting(stream.color)
+            if ((position==0) && (itemCount==1)) {
+                root.removeView(holder.binding.flStreamUsedVertical)
+            }
+            if (position==0) {
+                val set = ConstraintSet()
+                set.clone(root)
+                set.connect(flStreamUsedVertical.id, ConstraintSet.TOP, flStreamUsed.id,
+                    ConstraintSet.TOP)
+                set.applyTo(root)
+            } else if (position==itemCount-1) {
+                val set = ConstraintSet()
+                set.clone(root)
+                set.connect(flStreamUsedVertical.id, ConstraintSet.BOTTOM, flStreamUsed.id,
+                    ConstraintSet.BOTTOM)
+                set.applyTo(root)
             }
         }
-        holder.binding.svStreamUsed.painting(stream.color)
-        if ((position==0) && (itemCount==1)) {
-            holder.binding.root.removeView(holder.binding.flStreamUsedVertical)
-        }
-        if (position==0) {
-            val set = ConstraintSet()
-            set.clone(holder.binding.root)
-            set.connect(holder.binding.flStreamUsedVertical.id, ConstraintSet.TOP, holder.binding.flStreamUsed.id,
-                ConstraintSet.TOP)
-            set.applyTo(holder.binding.root)
-        } else if (position==itemCount-1) {
-            val set = ConstraintSet()
-            set.clone(holder.binding.root)
-            set.connect(holder.binding.flStreamUsedVertical.id, ConstraintSet.BOTTOM, holder.binding.flStreamUsed.id,
-                ConstraintSet.BOTTOM)
-            set.applyTo(holder.binding.root)
-        }
+
     }
 }

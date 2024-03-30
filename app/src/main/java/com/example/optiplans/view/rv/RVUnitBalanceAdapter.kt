@@ -11,22 +11,26 @@ import com.example.optiplans.view.IStreamClickListener
 class RVUnitBalanceAdapter(val unit: Unit, val isFeeds: Boolean, val periodNum: Int, val streamListener: IStreamClickListener): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     inner class UnitFeedItemHolder(val binding: RvUnitFeedItemBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(position: Int) {
-            val data = unit.feeds
-            binding.svUnitBalanceItem.painting(data.entries.elementAt(position).key.color)
-            binding.tvUnitBalanceItem.text = data.entries.elementAt(position).key.name + " (" + (data.entries.elementAt(position).value[periodNum]).toString() + ")"
-            binding.root.setOnClickListener {
-                streamListener.onStreamClick(unit.feeds.entries.elementAt(position).key)
+            with (binding) {
+                val data = unit.feeds
+                svUnitBalanceItem.painting(data.entries.elementAt(position).key.color)
+                tvUnitBalanceItem.text = data.entries.elementAt(position).key.name + " (" + (data.entries.elementAt(position).value[periodNum]).toString() + ")"
+                root.setOnClickListener {
+                    streamListener.onStreamClick(unit.feeds.entries.elementAt(position).key)
+                }
             }
         }
     }
 
     inner class UnitProductItemHolder(val binding: RvUnitProductItemBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(position: Int) {
-            val data = unit.products
-            binding.svUnitBalanceItem.painting(data.entries.elementAt(position).key.color)
-            binding.tvUnitBalanceItem.text = data.entries.elementAt(position).key.name + " (" + (-1*data.entries.elementAt(position).value[periodNum]).toString() + ")"
-            binding.root.setOnClickListener {
-                streamListener.onStreamClick(unit.products.entries.elementAt(position).key)
+            with (binding) {
+                val data = unit.products
+                svUnitBalanceItem.painting(data.entries.elementAt(position).key.color)
+                tvUnitBalanceItem.text = data.entries.elementAt(position).key.name + " (" + (-1*data.entries.elementAt(position).value[periodNum]).toString() + ")"
+                root.setOnClickListener {
+                    streamListener.onStreamClick(unit.products.entries.elementAt(position).key)
+                }
             }
         }
     }

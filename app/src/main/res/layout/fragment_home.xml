@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/tv_home_caption"
-        style="@style/SmallCaption"
+        style="@style/MidCaption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -23,17 +23,16 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="2dp"
-        android:text="@string/tv_home_model_name"
+        tools:text="ГПНС. Февраль 2024"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_home_caption" />
 
     <TextView
         android:id="@+id/tv_home_num_of_periods_label"
-        style="@style/BigText"
+        style="@style/SmallText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="9dp"
         android:text="@string/tv_home_num_of_periods"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_home_model_name" />
@@ -48,7 +47,7 @@
 
     <TextView
         android:id="@+id/tv_home_units"
-        style="@style/SmallCaption"
+        style="@style/MidCaption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -57,6 +56,7 @@
         app:layout_constraintTop_toBottomOf="@+id/fl_home_units_top" />
 
     <ImageView
+        android:contentDescription="@string/button_collapse_description"
         android:id="@+id/iv_home_units"
         android:layout_marginStart="5dp"
         android:layout_width="10dp"
@@ -94,7 +94,7 @@
 
     <TextView
         android:id="@+id/tv_home_streams"
-        style="@style/SmallCaption"
+        style="@style/MidCaption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -103,6 +103,7 @@
         app:layout_constraintTop_toBottomOf="@+id/fl_home_streams_top" />
 
     <ImageView
+        android:contentDescription="@string/button_collapse_description"
         android:id="@+id/iv_home_streams"
         android:layout_marginStart="5dp"
         android:layout_width="10dp"

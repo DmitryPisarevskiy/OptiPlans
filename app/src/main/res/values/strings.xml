@@ -30,4 +30,5 @@
     <string name="unit">unit</string>
     <string name="stream">stream</string>
     <string name="iv_schema_description">Имитация схемы</string>
+    <string name="button_collapse_description">кнопка свернуть/развернуть</string>
 </resources>

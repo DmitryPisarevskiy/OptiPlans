@@ -35,48 +35,50 @@ class UnitFragment(val streamListener: IStreamClickListener) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        currentUnit = ModelExample.currentUnit
-        binding.tvUnitTag.text = currentUnit?.tag?:""
-        binding.tvUnitName.text = currentUnit?.name?:""
-        currentUnit?.let {
-            binding.uvUnit.setColor(it.color)
-            binding.uvUnitCaption.setColor(it.color)
-            binding.rvUnitFeeds.layoutManager = LinearLayoutManager (activity)
-            binding.rvUnitFeeds.adapter = RVUnitBalanceAdapter(it, isFeeds = true, ModelExample.currentPeriodNum, streamListener)
-            binding.rvUnitProducts.layoutManager = LinearLayoutManager (activity)
-            binding.rvUnitProducts.adapter = RVUnitBalanceAdapter(it, isFeeds = false, ModelExample.currentPeriodNum, streamListener)
-        }
-        val spinnerData = Array<String>(ModelExample.periods.size+1) {""}
-        var sum = 0
-        for (i in ModelExample.periods.indices) {
-            spinnerData[i] = (i+1).toString() + " (" + ModelExample.periods[i] + " дней)"
-            sum+=ModelExample.periods[i]
-        }
-        spinnerData[ModelExample.periods.size] = "Всего " + "(" + sum.toString() + " дней)"
-        val arrayAdapter: ArrayAdapter<String> = ArrayAdapter(this.requireContext(),
-            android.R.layout.simple_spinner_item, spinnerData)
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.sUnitPeriod.adapter = arrayAdapter
-        binding.sUnitPeriod.prompt = "Выберите период"
-        binding.sUnitPeriod.setSelection(ModelExample.currentPeriodNum)
-        binding.sUnitPeriod.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                ModelExample.currentPeriodNum = p2
-                currentUnit?.apply {
-                    binding.rvUnitProducts.adapter = RVUnitBalanceAdapter(this, isFeeds = false, ModelExample.currentPeriodNum, streamListener)
-                    binding.rvUnitFeeds.adapter = RVUnitBalanceAdapter(this, isFeeds = true, ModelExample.currentPeriodNum, streamListener)
+        with (binding) {
+            currentUnit = ModelExample.currentUnit
+            tvUnitTag.text = currentUnit?.tag?:""
+            tvUnitName.text = currentUnit?.name?:""
+            currentUnit?.let {
+                uvUnit.setColor(it.color)
+                uvUnitCaption.setColor(it.color)
+                rvUnitFeeds.layoutManager = LinearLayoutManager (activity)
+                rvUnitFeeds.adapter = RVUnitBalanceAdapter(it, true, ModelExample.currentPeriodNum, streamListener)
+                rvUnitProducts.layoutManager = LinearLayoutManager (activity)
+                rvUnitProducts.adapter = RVUnitBalanceAdapter(it, false, ModelExample.currentPeriodNum, streamListener)
+            }
+            val spinnerData = Array<String>(ModelExample.periods.size+1) {""}
+            var sum = 0
+            for (i in ModelExample.periods.indices) {
+                spinnerData[i] = (i+1).toString() + " (" + ModelExample.periods[i] + " дней)"
+                sum+=ModelExample.periods[i]
+            }
+            spinnerData[ModelExample.periods.size] = "Всего " + "(" + sum.toString() + " дней)"
+            val arrayAdapter: ArrayAdapter<String> = ArrayAdapter(requireContext(),
+                android.R.layout.simple_spinner_item, spinnerData)
+            arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            sUnitPeriod.adapter = arrayAdapter
+            sUnitPeriod.prompt = "Выберите период"
+            sUnitPeriod.setSelection(ModelExample.currentPeriodNum)
+            sUnitPeriod.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                    ModelExample.currentPeriodNum = p2
+                    currentUnit?.apply {
+                        rvUnitProducts.adapter = RVUnitBalanceAdapter(this, isFeeds = false, ModelExample.currentPeriodNum, streamListener)
+                        rvUnitFeeds.adapter = RVUnitBalanceAdapter(this, isFeeds = true, ModelExample.currentPeriodNum, streamListener)
+                    }
+                }
+                override fun onNothingSelected(p0: AdapterView<*>?) {
                 }
             }
-            override fun onNothingSelected(p0: AdapterView<*>?) {
+            ivUnitBalance.setOnClickListener {
+                collapseItem(ivUnitBalance, llUnitBalance, !showBalance)
+                showBalance=!showBalance
             }
-        }
-        binding.ivUnitBalance.setOnClickListener {
-            collapseItem(binding.ivUnitBalance, binding.llUnitBalance, !showBalance)
-            showBalance=!showBalance
-        }
-        binding.tvUnitBalance.setOnClickListener {
-            collapseItem(binding.ivUnitBalance, binding.llUnitBalance, !showBalance)
-            showBalance=!showBalance
+            tvUnitBalance.setOnClickListener {
+                collapseItem(ivUnitBalance, llUnitBalance, !showBalance)
+                showBalance=!showBalance
+            }
         }
     }
 }

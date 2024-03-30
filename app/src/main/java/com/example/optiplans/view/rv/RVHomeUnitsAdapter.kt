@@ -20,12 +20,13 @@ class RVHomeUnitsAdapter(private val units: List<Unit>, val unitListener: IUnitC
     override fun getItemCount(): Int = units.size
 
     override fun onBindViewHolder(holder: UnitViewHolder, position: Int) {
-        val unit = units[position]
-        val context = holder.itemView.context
-        holder.binding.tvHomeUnitsItem.text = unit.name
-        holder.binding.uvHomeUnitsUnit.setColor(unit.color)
-        holder.itemView.setOnClickListener {
-            unitListener.onUnitClick(unit)
+        with (holder.binding) {
+            val unit = units[position]
+            tvHomeUnitsItem.text = unit.name
+            uvHomeUnitsUnit.setColor(unit.color)
+            root.setOnClickListener {
+                unitListener.onUnitClick(unit)
+            }
         }
     }
 }

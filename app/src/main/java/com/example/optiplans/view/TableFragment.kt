@@ -21,7 +21,7 @@ class TableFragment(val unitListener: IUnitClickListener): Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentTableBinding.inflate(inflater, container, false)
         return binding.root
     }

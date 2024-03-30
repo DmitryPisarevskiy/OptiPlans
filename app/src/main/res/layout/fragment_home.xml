@@ -134,7 +134,7 @@
 
     <TextView
         android:id="@+id/tv_home_num_of_periods"
-        style="@style/BigText"
+        style="@style/MidCaption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""

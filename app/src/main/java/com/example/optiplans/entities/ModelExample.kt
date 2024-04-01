@@ -1,7 +1,6 @@
 package com.example.optiplans.entities
 
 import android.graphics.Color
-import kotlinx.coroutines.newSingleThreadContext
 
 object ModelExample : Model("ГПНС. Февраль" ,3) {
     var currentStream: Stream? = null
@@ -49,11 +48,11 @@ object ModelExample : Model("ГПНС. Февраль" ,3) {
         waterStream.costs = arrayOf(10f,10f,10f)
 
         // Column construction
-        val etnColumn:Column = Column("Переработка этана", "ETN", 3, epUnit)
-        val sluColumn:Column = Column("Переработка ШФЛУ", "SLU", 3, epUnit)
-        val nafColumn:Column = Column("Переработка нафты", "NAF", 3, epUnit)
-        val etyColumn:Column = Column("Переработка этилена", "ETY", 3, hdpeUnit)
-        val prlColumn:Column = Column("Переработка пропилена", "PRL", 3, iaaUnit)
+        val etnColumn = Column("Переработка этана", "ETN", 3, epUnit)
+        val sluColumn = Column("Переработка ШФЛУ", "SLU", 3, epUnit)
+        val nafColumn = Column("Переработка нафты", "NAF", 3, epUnit)
+        val etyColumn = Column("Переработка этилена", "ETY", 3, hdpeUnit)
+        val prlColumn = Column("Переработка пропилена", "PRL", 3, iaaUnit)
 
         // Column coefficients
         etnColumn.strAndCoeffs.put(ethaneStream, 1f)
@@ -75,10 +74,10 @@ object ModelExample : Model("ГПНС. Февраль" ,3) {
         prlColumn.strAndCoeffs.put(iaaStream, -1.85f)
 
         // Capacities creation
-        val epEtyCap = Capacity("Мощность ЭП по этилену", "ETY", 3)
-        val epTotCap = Capacity("Мощность ЭП по сырью", "EPT",3)
-        val hdpeCap = Capacity("Мощность ПЭНД", "PND",3)
-        val iaaCap = Capacity("Мощность ЛАК", "LAK",3)
+        val epEtyCap = Capacity("ЭП-355 по этилену", "ETY", 3)
+        val epTotCap = Capacity("ЭП-355 по сырью", "EPT",3)
+        val hdpeCap = Capacity("ПЭНД", "PND",3)
+        val iaaCap = Capacity("ЛАК", "LAK",3)
         epEtyCap.regimesAndCoeffs.put(etnColumn,0.8f)
         epEtyCap.regimesAndCoeffs.put(sluColumn,0.7f)
         epEtyCap.regimesAndCoeffs.put(nafColumn,0.6f)

@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
@@ -17,7 +16,6 @@ import com.example.optiplans.R
 import com.example.optiplans.databinding.FragmentStreamBinding
 import com.example.optiplans.entities.ModelExample
 import com.example.optiplans.entities.Stream
-import com.example.optiplans.entities.collapseItem
 import com.example.optiplans.view.rv.RVStreamProducedAdapter
 import com.example.optiplans.view.rv.RVStreamUsedAdapter
 
@@ -60,10 +58,10 @@ class StreamFragment(val unitListener: IUnitClickListener) : Fragment() {
                 tvPeriod.setTextAppearance(R.style.TableText)
                 trStreamSailsPeriod.addView(tvPeriod)
             }
-            currentStream?.minBoundsSales?.apply { addTableItem(trStreamSailsMin, this) }
-            currentStream?.maxBoundsSales?.apply { addTableItem(trStreamSailsMax, this) }
-            currentStream?.prices?.apply { addTableItem(trStreamSailsPrice, this) }
-            currentStream?.sails?.apply { addTableItem(trStreamSailsSolution, this) }
+            currentStream?.minBoundsSales?.apply { addTableRow(trStreamSailsMin, this) }
+            currentStream?.maxBoundsSales?.apply { addTableRow(trStreamSailsMax, this) }
+            currentStream?.prices?.apply { addTableRow(trStreamSailsPrice, this) }
+            currentStream?.sails?.apply { addTableRow(trStreamSailsSolution, this) }
             for (i in 0..iMax) {
                 val tvPeriod = TextView(context)
                 tvPeriod.text =
@@ -73,14 +71,14 @@ class StreamFragment(val unitListener: IUnitClickListener) : Fragment() {
                 trStreamPurchasesPeriod.addView(tvPeriod)
             }
             currentStream?.minBoundsPurchases?.apply {
-                addTableItem(trStreamPurchasesMin,this)
+                addTableRow(trStreamPurchasesMin,this)
             }
             currentStream?.maxBoundsPurchases?.apply {
-                addTableItem(trStreamPurchasesMax,this)
+                addTableRow(trStreamPurchasesMax,this)
             }
-            currentStream?.costs?.apply { addTableItem(trStreamPurchasesPrice, this) }
+            currentStream?.costs?.apply { addTableRow(trStreamPurchasesPrice, this) }
             currentStream?.purchases?.apply {
-                addTableItem(trStreamPurchasesSolution,this)
+                addTableRow(trStreamPurchasesSolution,this)
             }
             currentStream?.apply {
                 rvStreamProduced.layoutManager = LinearLayoutManager(activity)
@@ -99,10 +97,10 @@ class StreamFragment(val unitListener: IUnitClickListener) : Fragment() {
             spinnerData[ModelExample.periods.size] = "Всего " + "(" + sum.toString() + " дней)"
             val arrayAdapter: ArrayAdapter<String> = ArrayAdapter(
                 requireContext(),
-                android.R.layout.simple_spinner_item,
+                R.layout.spinner_item,
                 spinnerData
             )
-            arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            arrayAdapter.setDropDownViewResource(R.layout.spinner_item_drop_down)
             sStreamPeriod.adapter = arrayAdapter
             sStreamPeriod.prompt = "Выберите период"
             sStreamPeriod.setSelection(ModelExample.currentPeriodNum)
@@ -162,14 +160,4 @@ class StreamFragment(val unitListener: IUnitClickListener) : Fragment() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
-    fun addTableItem(layout: LinearLayout, values: Array<Float>) {
-        values.forEach {
-            val textView = TextView(context)
-            textView.text = if (it>=0) it.toString() else ""
-            textView.gravity = Gravity.CENTER
-            textView.setTextAppearance(R.style.TableText)
-            layout.addView(textView)
-        }
-    }
 }

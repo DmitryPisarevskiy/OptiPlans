@@ -3,7 +3,6 @@ package com.example.optiplans.entities
 import android.view.View
 import android.view.WindowManager
 import android.view.animation.Animation
-import android.view.animation.RotateAnimation
 import android.view.animation.Transformation
 
 fun Array<Float>.times(value: Float): Array<Float> {
@@ -64,20 +63,4 @@ fun expand(v: View) {
     }
     a.duration = 500
     v.startAnimation(a)
-}
-
-fun collapseItem(collapseButton: View, viewToCollapse:View, isCollapsed: Boolean) {
-    var startAngle=0f
-    var endAngle=180f
-    if (isCollapsed) {
-        startAngle = 180f
-        endAngle = 0f
-        expand(viewToCollapse)
-    } else {
-        collapse(viewToCollapse)
-    }
-    val animation = RotateAnimation(startAngle,endAngle,collapseButton.measuredWidth*0.5f,collapseButton.measuredHeight*0.5f)
-    animation.duration = 100
-    animation.fillAfter = true
-    collapseButton.startAnimation(animation)
 }

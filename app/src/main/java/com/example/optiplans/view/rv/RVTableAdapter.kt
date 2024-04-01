@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams
+import android.widget.TableRow
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintSet
@@ -14,6 +15,8 @@ import com.example.optiplans.databinding.RvTableItemBinding
 import com.example.optiplans.entities.Model
 import com.example.optiplans.view.IUnitClickListener
 import com.example.optiplans.view.StreamView
+import com.example.optiplans.view.addItemTablePeriodRow
+import com.example.optiplans.view.addItemTableRow
 
 class RVTableAdapter(val model: Model, val unitListener: IUnitClickListener) : RecyclerView.Adapter<RVTableAdapter.TableItemHolder>() {
     class TableItemHolder(val binding: RvTableItemBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -77,7 +80,16 @@ class RVTableAdapter(val model: Model, val unitListener: IUnitClickListener) : R
             root.setOnClickListener {
                 unitListener.onUnitClick(model.units[position])
             }
+            addItemTablePeriodRow(trTableItemCapsPeriod)
+            unit.capacities.forEach {
+                val tv = TextView(root.context)
+                val tr = TableRow(root.context)
+                tv.text = it.name
+                tv.setTextAppearance(R.style.ItemText)
+                tr.addView(tv)
+                addItemTableRow(tr,it.activities)
+                tlTableItemCaps.addView(tr)
+            }
         }
-
     }
 }

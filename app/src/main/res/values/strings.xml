@@ -32,4 +32,5 @@
     <string name="iv_schema_description">Имитация схемы</string>
     <string name="button_collapse_description">кнопка свернуть/развернуть</string>
     <string name="caps">Мощности</string>
+    <string name="regimes">Режимы</string>
 </resources>

@@ -13,18 +13,32 @@
         <item name="android:textStyle">bold</item>
     </style>
     <style name="SmallText" >
-        <item name="android:textSize">17sp</item>
+        <item name="android:textSize">13sp</item>
         <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
     <style name="VerySmallText" >
         <item name="android:textSize">10sp</item>
         <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
+    <style name="TableCaption" >
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">?attr/colorOnSecondary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginStart">5dp</item>
+        <item name="android:layout_gravity">start</item>
+        <item name="android:gravity">start</item>
+    </style>
+    <style name="ItemTableCaption" >
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">?attr/colorOnSecondary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginStart">5dp</item>
+        <item name="android:layout_gravity">start</item>
+        <item name="android:gravity">start</item>
+    </style>
     <style name="TableText" >
         <item name="android:textSize">13sp</item>
         <item name="android:textColor">?attr/colorOnPrimary</item>
-        <item name="android:layout_marginStart">15dp</item>
-        <item name="android:layout_marginEnd">15dp</item>
     </style>
     <style name="ItemTag" >
         <item name="android:textSize">13sp</item>
@@ -42,6 +56,7 @@
     <style name="ItemText" >
         <item name="android:textSize">10sp</item>
         <item name="android:textColor">?attr/colorOnPrimary</item>
-        <item name="android:layout_margin">5dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_gravity">center_vertical</item>
     </style>
 </resources>

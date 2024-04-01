@@ -9,6 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         tools:context=".view.StreamFragment">
 
         <com.example.optiplans.view.StreamView
@@ -56,19 +57,19 @@
             tools:text="PND" />
 
         <FrameLayout
-            android:id="@+id/fl_stream_first_line"
+            android:id="@+id/fl_stream_sails"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            app:layout_constraintTop_toBottomOf="@id/tv_stream_tag"
+            app:layout_constraintTop_toBottomOf="@id/ll_stream_balance"
             android:background="@color/gray"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="30dp"/>
 
         <HorizontalScrollView
             android:id="@+id/hsv_stream_sails"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/fl_stream_first_line"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintTop_toTopOf="@+id/tv_stream_seils_top"
+            app:layout_constraintStart_toStartOf="parent">
             <TableLayout
                 android:layout_width="wrap_content"
                 android:stretchColumns="*"
@@ -78,7 +79,6 @@
                     <TextView
                         style="@style/SmallText"
                         android:layout_marginStart="2dp"
-                        android:layout_marginEnd="5dp"
                         android:layout_gravity="center_vertical"
                         android:text=""/>
                 </TableRow>
@@ -115,8 +115,8 @@
                     android:backgroundTint="?attr/colorSecondary"
                     android:background="@drawable/frame">
                     <TextView
-                        android:id="@+id/tv_stream_seils_bottom"
                         style="@style/SmallText"
+                        android:layout_width="80dp"
                         android:layout_marginStart="2dp"
                         android:layout_gravity="center_vertical"
                         android:text="@string/solution" />
@@ -127,7 +127,7 @@
         <TextView
             android:id="@+id/tv_stream_seils_top"
             style="@style/MidCaption"
-            app:layout_constraintTop_toBottomOf="@id/fl_stream_first_line"
+            app:layout_constraintTop_toBottomOf="@id/fl_stream_sails"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -150,7 +150,7 @@
             android:text="@string/sail"/>
 
         <FrameLayout
-            android:id="@+id/fl_stream_third_line"
+            android:id="@+id/fl_stream_purchases"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="30dp"
@@ -161,7 +161,7 @@
             android:id="@+id/hsv_stream_purchases"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/fl_stream_third_line"
+            app:layout_constraintTop_toBottomOf="@+id/fl_stream_purchases"
             app:layout_constraintEnd_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
             <TableLayout
@@ -212,6 +212,7 @@
                     <TextView
                         style="@style/SmallText"
                         android:layout_marginStart="2dp"
+                        android:layout_width="80dp"
                         android:layout_gravity="center_vertical"
                         android:text="@string/solution"/>
                 </TableRow>
@@ -221,7 +222,7 @@
         <TextView
             android:id="@+id/tv_stream_purchases_top"
             style="@style/MidCaption"
-            app:layout_constraintTop_toBottomOf="@id/fl_stream_third_line"
+            app:layout_constraintTop_toBottomOf="@id/fl_stream_purchases"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -244,11 +245,11 @@
             android:text="@string/sail"/>
 
         <FrameLayout
-            android:id="@+id/fl_stream_fifth_line"
-            android:layout_marginTop="30dp"
+            android:id="@+id/fl_stream_balance"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            app:layout_constraintTop_toBottomOf="@id/hsv_stream_purchases"
+            app:layout_constraintTop_toBottomOf="@id/tv_stream_tag"
             android:background="@color/gray" />
 
         <TextView
@@ -256,7 +257,7 @@
             style="@style/MidCaption"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/fl_stream_fifth_line"
+            app:layout_constraintTop_toBottomOf="@id/fl_stream_balance"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="2dp"
             android:text="@string/balance"/>
@@ -278,7 +279,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/fl_stream_fifth_line">
+            app:layout_constraintTop_toBottomOf="@id/fl_stream_balance">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -287,7 +288,7 @@
                 android:layout_gravity="end">
                 <TextView
                     android:id="@+id/tv_stream_period"
-                    style="@style/SmallText"
+                    style="@style/VerySmallText"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:layout_marginEnd="5dp"
@@ -309,7 +310,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/fl_stream_balance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

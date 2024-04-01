@@ -9,35 +9,19 @@
         android:id="@+id/sv_unit_balance_item"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_width="12dp"
-        android:layout_height="12dp"/>
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="8dp"
+        android:layout_height="8dp"/>
 
     <TextView
-        android:id="@+id/tv_unit_balance_value"
-        style="@style/SmallText"
-        android:textStyle="bold"
-        android:textColor="?attr/colorOnSecondary"
+        android:id="@+id/tv_unit_balance_item"
+        style="@style/ItemText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@id/sv_unit_balance_item"
         app:layout_constraintBottom_toBottomOf="@id/sv_unit_balance_item"
         app:layout_constraintEnd_toStartOf="@id/sv_unit_balance_item"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="5dp"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_gravity="center_vertical"
-        tools:text = "5.5"/>
-
-    <TextView
-        android:id="@+id/tv_unit_balance_item"
-        style="@style/SmallText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/sv_unit_balance_item"
-        app:layout_constraintBottom_toBottomOf="@id/sv_unit_balance_item"
-        app:layout_constraintEnd_toStartOf="@id/tv_unit_balance_value"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         android:textAppearance="?android:attr/textAppearanceSmall"

@@ -9,6 +9,7 @@ import android.widget.TableRow
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.optiplans.R
 import com.example.optiplans.databinding.RvTableItemBinding
@@ -37,46 +38,10 @@ class RVTableAdapter(val model: Model, val unitListener: IUnitClickListener) : R
             tvTableItemUnitTag.text = unit.tag
             tvTableItemUnitName.text = unit.name
             uvTableUnitsUnit.setColor(unit.color)
-            for (i in model.units[position].feeds.entries.indices) {
-                val stream = model.units[position].feeds.entries.elementAt(i).key
-                val streamView = StreamView(holder.itemView.context)
-                streamView.id = View.generateViewId()
-                streamView.layoutParams = LayoutParams(30,30)
-                streamView.painting(stream.color)
-                root.addView(streamView)
-                val textView = TextView(holder.itemView.context)
-                textView.id = View.generateViewId()
-                textView.text =stream.name
-                textView.setTextAppearance(R.style.ItemText)
-                root.addView(textView)
-                val set = ConstraintSet()
-                set.clone(root)
-                set.connect(streamView.id, ConstraintSet.END, uvTableUnitsUnit.id,ConstraintSet.START)
-                set.connect(streamView.id, ConstraintSet.TOP, uvTableUnitsUnit.id,ConstraintSet.TOP, 50*(i+1))
-                set.connect(textView.id, ConstraintSet.END, streamView.id,ConstraintSet.START,5)
-                set.centerVertically(textView.id, streamView.id)
-                set.applyTo(root)
-            }
-            for (i in model.units[position].products.entries.indices) {
-                val stream = model.units[position].products.entries.elementAt(i).key
-                val streamView = StreamView(root.context)
-                streamView.id = View.generateViewId()
-                streamView.layoutParams = LayoutParams(30,30)
-                streamView.painting(model.units[position].products.entries.elementAt(i).key.color)
-                root.addView(streamView)
-                val textView = TextView(root.context)
-                textView.id = View.generateViewId()
-                textView.text =stream.name
-                textView.setTextAppearance(R.style.ItemText)
-                root.addView(textView)
-                val set = ConstraintSet()
-                set.clone(root)
-                set.connect(streamView.id, ConstraintSet.START, uvTableUnitsUnit.id,ConstraintSet.END)
-                set.connect(streamView.id, ConstraintSet.TOP, uvTableUnitsUnit.id,ConstraintSet.TOP, 50*(i+1))
-                set.connect(textView.id, ConstraintSet.START, streamView.id,ConstraintSet.END,5)
-                set.centerVertically(textView.id, streamView.id)
-                set.applyTo(root)
-            }
+            rvTableFeeds.layoutManager = LinearLayoutManager(root.context)
+            rvTableProducts.layoutManager = LinearLayoutManager(root.context)
+            rvTableFeeds.adapter = RVTableFeedsAdapter(model.units[position])
+            rvTableProducts.adapter = RVTableProductsAdapter(model.units[position])
             root.setOnClickListener {
                 unitListener.onUnitClick(model.units[position])
             }

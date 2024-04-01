@@ -142,6 +142,7 @@ class UnitFragment(val streamListener: IStreamClickListener) : Fragment() {
             tvUnitCapSolution.text = getString(R.string.solution)
             tvUnitCapSolution.setTextAppearance(R.style.TableText)
             trUnitCapSolution.addView(tvUnitCapSolution)
+            trUnitCapSolution.setBackgroundColor(resources.getColor(R.color.light_gray))
             table.addView(trUnitCapSolution)
             addTableRow(trUnitCapSolution, it.activities)
         }

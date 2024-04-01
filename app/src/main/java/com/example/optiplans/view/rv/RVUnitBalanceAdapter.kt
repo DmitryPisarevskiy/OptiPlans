@@ -14,7 +14,8 @@ class RVUnitBalanceAdapter(val unit: Unit, val isFeeds: Boolean, val periodNum: 
             with (binding) {
                 val data = unit.feeds
                 svUnitBalanceItem.painting(data.entries.elementAt(position).key.color)
-                tvUnitBalanceItem.text = data.entries.elementAt(position).key.name + " (" + (data.entries.elementAt(position).value[periodNum]).toString() + ")"
+                tvUnitBalanceItem.text = data.entries.elementAt(position).key.name
+                tvUnitBalanceValue.text = data.entries.elementAt(position).value[periodNum].toString()
                 root.setOnClickListener {
                     streamListener.onStreamClick(unit.feeds.entries.elementAt(position).key)
                 }
@@ -27,7 +28,8 @@ class RVUnitBalanceAdapter(val unit: Unit, val isFeeds: Boolean, val periodNum: 
             with (binding) {
                 val data = unit.products
                 svUnitBalanceItem.painting(data.entries.elementAt(position).key.color)
-                tvUnitBalanceItem.text = data.entries.elementAt(position).key.name + " (" + (-1*data.entries.elementAt(position).value[periodNum]).toString() + ")"
+                tvUnitBalanceItem.text = data.entries.elementAt(position).key.name
+                tvUnitBalanceValue.text = (-1*data.entries.elementAt(position).value[periodNum]).toString()
                 root.setOnClickListener {
                     streamListener.onStreamClick(unit.products.entries.elementAt(position).key)
                 }

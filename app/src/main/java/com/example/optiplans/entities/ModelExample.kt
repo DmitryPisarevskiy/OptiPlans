@@ -39,12 +39,16 @@ object ModelExample : Model("ГПНС. Февраль" ,3) {
 
         // Prices, costs
         ethaneStream.costs = arrayOf(20f,20f,20f)
+        ethaneStream.minBoundsPurchases = arrayOf(1f,0f,0.5f)
         lpgStream.costs = arrayOf(10f,10f,10f)
+        lpgStream.maxBoundsPurchases = arrayOf(10f,10f,10f)
         naphtaStream.costs = arrayOf(20f,20f,20f)
         ethyleneStream.prices = arrayOf(30f,30f,30f)
         tspStream.prices = arrayOf(10f,10f,10f)
+        tspStream.maxBoundsSales = arrayOf(10f,10f,10f)
         hdpeStream.prices = arrayOf(40f,40f,40f)
         iaaStream.prices = arrayOf(10f,10f,10f)
+        iaaStream.minBoundsSales = arrayOf(0f,0f,0f)
         waterStream.costs = arrayOf(10f,10f,10f)
 
         // Column construction
@@ -131,5 +135,9 @@ object ModelExample : Model("ГПНС. Февраль" ,3) {
         //Setting current Stream and Unit
         currentUnit = epUnit
         currentStream = ethyleneStream
+        quantityMeasure = QuantityMeasure.PER_TIME_UNIT
+        quantityCoeff = Array<Int>(numOfPeriods) {1}
+        timeUnit = "д"
+        quantityUnit = "т"
     }
 }

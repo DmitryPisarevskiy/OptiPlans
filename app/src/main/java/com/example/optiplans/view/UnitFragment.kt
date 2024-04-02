@@ -55,13 +55,12 @@ class UnitFragment(val streamListener: IStreamClickListener) : Fragment() {
                 rvUnitProducts.layoutManager = LinearLayoutManager (activity)
                 rvUnitProducts.adapter = RVUnitBalanceAdapter(it, false, ModelExample.currentPeriodNum, streamListener)
             }
-            val spinnerData = Array<String>(ModelExample.periods.size+1) {""}
+            val spinnerData = Array<String>(ModelExample.periods.size) {""}
             var sum = 0
             for (i in ModelExample.periods.indices) {
                 spinnerData[i] = (i+1).toString() + " (" + ModelExample.periods[i] + " дней)"
                 sum+=ModelExample.periods[i]
             }
-            spinnerData[ModelExample.periods.size] = "Всего " + "(" + sum.toString() + " дней)"
             val arrayAdapter: ArrayAdapter<String> = ArrayAdapter(requireContext(),
                 R.layout.spinner_item, spinnerData)
             arrayAdapter.setDropDownViewResource(R.layout.spinner_item_drop_down)

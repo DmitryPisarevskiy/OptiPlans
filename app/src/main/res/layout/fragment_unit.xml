@@ -26,7 +26,7 @@
 
         <TextView
             android:id="@+id/tv_unit_tag"
-            style="@style/MidCaption"
+            style="@style/TableCaption"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="5dp"
@@ -38,11 +38,21 @@
         <com.example.optiplans.view.UnitView
             android:id="@+id/uv_unit_caption"
             android:layout_width="13dp"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:layout_marginEnd="5dp"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/tv_unit_name"
             app:layout_constraintEnd_toStartOf="@id/tv_unit_name"
-            />
+            app:layout_constraintTop_toTopOf="@id/tv_unit_name" />
+
+        <TextView
+            android:id="@+id/tv_unit_unit"
+            style="@style/SmallText"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/unit_lable" />
 
         <TextView
             android:id="@+id/tv_unit_name"
@@ -51,7 +61,7 @@
             android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_unit_unit"
             tools:text="ПЭНД" />
 
         <FrameLayout
@@ -109,8 +119,7 @@
                     android:id="@+id/rv_unit_feeds"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="5dp" />
+                    android:layout_gravity="center"/>
 
                 <com.example.optiplans.view.UnitView
                     android:id="@+id/uv_unit"
@@ -122,7 +131,6 @@
                     android:id="@+id/rv_unit_products"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
                     android:layout_gravity="center"/>
             </LinearLayout>
         </LinearLayout>

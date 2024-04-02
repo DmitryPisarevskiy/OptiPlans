@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.example.optiplans.R
 import com.example.optiplans.databinding.ActivityMainBinding
@@ -12,7 +11,7 @@ import com.example.optiplans.entities.ModelExample
 import com.example.optiplans.entities.Stream
 import com.example.optiplans.entities.Unit
 
-class MainActivity : AppCompatActivity(), IStreamClickListener, IUnitClickListener {
+class MainActivity : AppCompatActivity(), IStreamClickListener, IUnitClickListener, ICommerceSwitchListener {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,10 +22,11 @@ class MainActivity : AppCompatActivity(), IStreamClickListener, IUnitClickListen
         binding.bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> replaceFragment(HomeFragment(this,this))
-                R.id.schema -> replaceFragment(SchemaFragment())
+//                R.id.schema -> replaceFragment(SchemaFragment())
+                R.id.commerce -> replaceFragment(CommerceFragment(ModelExample, true,this, this))
                 R.id.table -> replaceFragment(TableFragment(this))
                 R.id.unit -> replaceFragment(UnitFragment(this))
-                R.id.stream -> replaceFragment(StreamFragment(this))
+                R.id.stream -> replaceFragment(StreamFragment(this,this))
                 else -> {}
             }
             true
@@ -48,7 +48,6 @@ class MainActivity : AppCompatActivity(), IStreamClickListener, IUnitClickListen
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -61,5 +60,9 @@ class MainActivity : AppCompatActivity(), IStreamClickListener, IUnitClickListen
     override fun onUnitClick(unit: Unit) {
         ModelExample.currentUnit = unit
         binding.bottomNav.selectedItemId = R.id.unit
+    }
+
+    override fun onCommerceSwitchClick(purchasesIsChecked: Boolean) {
+        replaceFragment(CommerceFragment(ModelExample, purchasesIsChecked, this,this))
     }
 }

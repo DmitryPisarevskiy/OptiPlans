@@ -7,9 +7,10 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.RecyclerView
 import com.example.optiplans.databinding.RvStreamProducedItemBinding
 import com.example.optiplans.entities.Stream
+import com.example.optiplans.view.ICommerceSwitchListener
 import com.example.optiplans.view.IUnitClickListener
 
-class RVStreamProducedAdapter (private val stream: Stream, val periodNum: Int, val unitListener: IUnitClickListener): RecyclerView.Adapter<RVStreamProducedAdapter.StreamPoducedViewHolder>() {
+class RVStreamProducedAdapter (private val stream: Stream, val periodNum: Int, val unitListener: IUnitClickListener, val commerceListener:ICommerceSwitchListener): RecyclerView.Adapter<RVStreamProducedAdapter.StreamPoducedViewHolder>() {
     class StreamPoducedViewHolder (val binding: RvStreamProducedItemBinding): RecyclerView.ViewHolder(binding.root) {
     }
 
@@ -32,6 +33,9 @@ class RVStreamProducedAdapter (private val stream: Stream, val periodNum: Int, v
                 tvStreamProducedItem.text = "Покупки"
                 tvStreamProducedValue.text = stream.purchases[periodNum].toString()
                 uvStreamProduced.visibility = View.GONE
+                root.setOnClickListener {
+                    commerceListener.onCommerceSwitchClick(true)
+                }
             } else {
                 tvStreamProducedItem.text = stream.producingUnits.entries.elementAt(index).key.name
                 tvStreamProducedValue.text = stream.producingUnits.entries.elementAt(index).value[periodNum].toString()

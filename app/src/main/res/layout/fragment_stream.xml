@@ -22,9 +22,20 @@
             app:layout_constraintEnd_toStartOf="@id/tv_stream_name"/>
 
         <TextView
+            android:id="@+id/tv_stream_stream"
+            style="@style/SmallText"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/stream_label" />
+
+        <TextView
             android:id="@+id/tv_stream_name"
             style="@style/BigCaption"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_stream_stream"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="5dp"
@@ -47,7 +58,7 @@
 
         <TextView
             android:id="@+id/tv_stream_tag"
-            style="@style/MidCaption"
+            style="@style/TableCaption"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="5dp"

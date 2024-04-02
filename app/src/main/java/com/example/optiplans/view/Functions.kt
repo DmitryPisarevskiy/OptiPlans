@@ -30,7 +30,7 @@ fun collapseItem(collapseButton: View, viewToCollapse: View, isCollapsed: Boolea
 
 
 @RequiresApi(Build.VERSION_CODES.M)
-fun addMainTableRow(row: TableRow, values: Array<Float>, style: Int) {
+private fun addMainTableRow(row: TableRow, values: Array<Float>, style: Int) {
     values.forEach {
         val textView = TextView(row.context)
         textView.text = if (it >= 0) it.toString() else ""
@@ -42,7 +42,7 @@ fun addMainTableRow(row: TableRow, values: Array<Float>, style: Int) {
 }
 
 @RequiresApi(Build.VERSION_CODES.M)
-fun addMainTablePeriodRow(row: TableRow, style: Int) {
+private fun addMainTablePeriodRow(row: TableRow, style: Int) {
     for (i in ModelExample.periods.indices) {
         val tv = TextView(row.context)
         tv.text =

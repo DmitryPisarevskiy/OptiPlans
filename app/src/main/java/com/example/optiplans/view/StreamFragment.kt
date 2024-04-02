@@ -19,7 +19,7 @@ import com.example.optiplans.entities.Stream
 import com.example.optiplans.view.rv.RVStreamProducedAdapter
 import com.example.optiplans.view.rv.RVStreamUsedAdapter
 
-class StreamFragment(val unitListener: IUnitClickListener) : Fragment() {
+class StreamFragment(val unitListener: IUnitClickListener, val commerceListener: ICommerceSwitchListener) : Fragment() {
     var currentStream: Stream? = null
     lateinit var binding: FragmentStreamBinding
     private var showSails: Boolean = true
@@ -83,18 +83,17 @@ class StreamFragment(val unitListener: IUnitClickListener) : Fragment() {
             currentStream?.apply {
                 rvStreamProduced.layoutManager = LinearLayoutManager(activity)
                 rvStreamProduced.adapter =
-                    RVStreamProducedAdapter(this, ModelExample.currentPeriodNum, unitListener)
+                    RVStreamProducedAdapter(this, ModelExample.currentPeriodNum, unitListener,commerceListener)
                 rvStreamUsed.layoutManager = LinearLayoutManager(activity)
                 rvStreamUsed.adapter =
-                    RVStreamUsedAdapter(this, ModelExample.currentPeriodNum, unitListener)
+                    RVStreamUsedAdapter(this, ModelExample.currentPeriodNum, unitListener,commerceListener)
             }
-            val spinnerData = Array<String>(ModelExample.periods.size + 1) { "" }
+            val spinnerData = Array<String>(ModelExample.periods.size) { "" }
             var sum = 0
             for (i in ModelExample.periods.indices) {
                 spinnerData[i] = (i + 1).toString() + " (" + ModelExample.periods[i] + " дней)"
                 sum += ModelExample.periods[i]
             }
-            spinnerData[ModelExample.periods.size] = "Всего " + "(" + sum.toString() + " дней)"
             val arrayAdapter: ArrayAdapter<String> = ArrayAdapter(
                 requireContext(),
                 R.layout.spinner_item,
@@ -112,12 +111,14 @@ class StreamFragment(val unitListener: IUnitClickListener) : Fragment() {
                             rvStreamProduced.adapter = RVStreamProducedAdapter(
                                 this,
                                 ModelExample.currentPeriodNum,
-                                unitListener
+                                unitListener,
+                                commerceListener
                             )
                             rvStreamUsed.adapter = RVStreamUsedAdapter(
                                 this,
                                 ModelExample.currentPeriodNum,
-                                unitListener
+                                unitListener,
+                                commerceListener
                             )
                         }
                     }

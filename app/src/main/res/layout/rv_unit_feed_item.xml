@@ -7,12 +7,21 @@
 
     <com.example.optiplans.view.StreamView
         android:id="@+id/sv_unit_balance_item"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
         android:layout_width="12dp"
-        android:layout_height="12dp"/>
+        android:layout_height="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/fl_unit_product"
+        app:layout_constraintEnd_toStartOf="@id/sv_unit_balance_item"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/blue"
+        android:layout_width="45dp"
+        android:layout_height="1dp"/>
+
 
     <TextView
         android:id="@+id/tv_unit_balance_value"
@@ -21,8 +30,7 @@
         android:textColor="?attr/colorOnSecondary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/sv_unit_balance_item"
-        app:layout_constraintBottom_toBottomOf="@id/sv_unit_balance_item"
+        app:layout_constraintBottom_toTopOf="@id/fl_unit_product"
         app:layout_constraintEnd_toStartOf="@id/sv_unit_balance_item"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="5dp"
@@ -37,7 +45,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@id/sv_unit_balance_item"
         app:layout_constraintBottom_toBottomOf="@id/sv_unit_balance_item"
-        app:layout_constraintEnd_toStartOf="@id/tv_unit_balance_value"
+        app:layout_constraintEnd_toStartOf="@id/fl_unit_product"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         android:textAppearance="?android:attr/textAppearanceSmall"

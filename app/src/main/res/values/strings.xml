@@ -33,4 +33,9 @@
     <string name="button_collapse_description">кнопка свернуть/развернуть</string>
     <string name="caps">Мощности</string>
     <string name="regimes">Режимы</string>
+    <string name="unit_lable">Установка</string>
+    <string name="stream_label">Поток</string>
+    <string name="purchases">Покупки</string>
+    <string name="sails">Продажи</string>
+    <string name="commerce">commerce</string>
 </resources>

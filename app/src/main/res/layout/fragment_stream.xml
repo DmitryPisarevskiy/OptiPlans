@@ -283,50 +283,15 @@
             app:layout_constraintTop_toTopOf="@id/tv_stream_balance"
             app:layout_constraintBottom_toBottomOf="@id/tv_stream_balance"
             android:background="@drawable/button_collapse"/>
-
-        <LinearLayout
-            android:id="@+id/ll_stream_balance"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/fl_stream_balance">
-
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/ll_stream_balance"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="end">
-                <TextView
-                    android:id="@+id/tv_stream_period"
-                    style="@style/VerySmallText"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:layout_marginEnd="5dp"
-                    android:layout_gravity="center"
-                    android:text="@string/stream_period"/>
-                <FrameLayout
-                    android:id="@+id/fl_stream_spinner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/frame"
-                    android:layout_marginEnd="20dp">
-                    <Spinner
-                        android:id="@+id/s_stream_period"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:text="@string/period"/>
-                </FrameLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="25dp"
                 android:orientation="horizontal"
                 android:gravity="center"
-                android:layout_gravity="center">
+                android:layout_gravity="center"
+                app:layout_constraintTop_toBottomOf="@id/fl_stream_balance">
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_stream_produced"
                     android:layout_width="wrap_content"
@@ -336,6 +301,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
-        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

@@ -6,8 +6,6 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
@@ -19,7 +17,7 @@ import com.example.optiplans.entities.Stream
 import com.example.optiplans.view.rv.RVStreamProducedAdapter
 import com.example.optiplans.view.rv.RVStreamUsedAdapter
 
-class StreamFragment(val unitListener: IUnitClickListener, val commerceListener: ICommerceSwitchListener) : Fragment() {
+class StreamFragment(val unitListener: IUnitClickListener, val commerceListener: ICommerceSwitchListener) : Fragment(), IPeriodSpinnerListener {
     var currentStream: Stream? = null
     lateinit var binding: FragmentStreamBinding
     private var showSails: Boolean = true
@@ -88,43 +86,6 @@ class StreamFragment(val unitListener: IUnitClickListener, val commerceListener:
                 rvStreamUsed.adapter =
                     RVStreamUsedAdapter(this, ModelExample.currentPeriodNum, unitListener,commerceListener)
             }
-            val spinnerData = Array<String>(ModelExample.periods.size) { "" }
-            var sum = 0
-            for (i in ModelExample.periods.indices) {
-                spinnerData[i] = (i + 1).toString() + " (" + ModelExample.periods[i] + " дней)"
-                sum += ModelExample.periods[i]
-            }
-            val arrayAdapter: ArrayAdapter<String> = ArrayAdapter(
-                requireContext(),
-                R.layout.spinner_item,
-                spinnerData
-            )
-            arrayAdapter.setDropDownViewResource(R.layout.spinner_item_drop_down)
-            sStreamPeriod.adapter = arrayAdapter
-            sStreamPeriod.prompt = "Выберите период"
-            sStreamPeriod.setSelection(ModelExample.currentPeriodNum)
-            sStreamPeriod.onItemSelectedListener =
-                object : AdapterView.OnItemSelectedListener {
-                    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                        ModelExample.currentPeriodNum = p2
-                        currentStream?.apply {
-                            rvStreamProduced.adapter = RVStreamProducedAdapter(
-                                this,
-                                ModelExample.currentPeriodNum,
-                                unitListener,
-                                commerceListener
-                            )
-                            rvStreamUsed.adapter = RVStreamUsedAdapter(
-                                this,
-                                ModelExample.currentPeriodNum,
-                                unitListener,
-                                commerceListener
-                            )
-                        }
-                    }
-                    override fun onNothingSelected(p0: AdapterView<*>?) {
-                    }
-                }
             if (!showPurchases) {
                 collapseItem(ivStreamPurchasesTop,hsvStreamPurchases,showPurchases)
             }
@@ -158,6 +119,23 @@ class StreamFragment(val unitListener: IUnitClickListener, val commerceListener:
                 collapseItem(ivStreamBalance, llStreamBalance, !showBalance)
                 showBalance = !showBalance
             }
+        }
+    }
+
+    override fun onPeriodSpinnerChange(period: Int) {
+        currentStream?.apply {
+            binding.rvStreamProduced.adapter = RVStreamProducedAdapter(
+                this,
+                period,
+                unitListener,
+                commerceListener
+            )
+            binding.rvStreamUsed.adapter = RVStreamUsedAdapter(
+                this,
+                period,
+                unitListener,
+                commerceListener
+            )
         }
     }
 

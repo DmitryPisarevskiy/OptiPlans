@@ -6,8 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
@@ -19,7 +17,7 @@ import com.example.optiplans.entities.ModelExample
 import com.example.optiplans.entities.Unit
 import com.example.optiplans.view.rv.RVUnitBalanceAdapter
 
-class UnitFragment(val streamListener: IStreamClickListener) : Fragment() {
+class UnitFragment(val streamListener: IStreamClickListener) : Fragment(), IPeriodSpinnerListener {
     private lateinit var binding: FragmentUnitBinding
     var currentUnit: Unit? = null
     private var showBalance = true
@@ -54,29 +52,6 @@ class UnitFragment(val streamListener: IStreamClickListener) : Fragment() {
                 rvUnitFeeds.adapter = RVUnitBalanceAdapter(it, true, ModelExample.currentPeriodNum, streamListener)
                 rvUnitProducts.layoutManager = LinearLayoutManager (activity)
                 rvUnitProducts.adapter = RVUnitBalanceAdapter(it, false, ModelExample.currentPeriodNum, streamListener)
-            }
-            val spinnerData = Array<String>(ModelExample.periods.size) {""}
-            var sum = 0
-            for (i in ModelExample.periods.indices) {
-                spinnerData[i] = (i+1).toString() + " (" + ModelExample.periods[i] + " дней)"
-                sum+=ModelExample.periods[i]
-            }
-            val arrayAdapter: ArrayAdapter<String> = ArrayAdapter(requireContext(),
-                R.layout.spinner_item, spinnerData)
-            arrayAdapter.setDropDownViewResource(R.layout.spinner_item_drop_down)
-            sUnitPeriod.adapter = arrayAdapter
-            sUnitPeriod.prompt = "Выберите период"
-            sUnitPeriod.setSelection(ModelExample.currentPeriodNum)
-            sUnitPeriod.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                    ModelExample.currentPeriodNum = p2
-                    currentUnit?.apply {
-                        rvUnitProducts.adapter = RVUnitBalanceAdapter(this, isFeeds = false, ModelExample.currentPeriodNum, streamListener)
-                        rvUnitFeeds.adapter = RVUnitBalanceAdapter(this, isFeeds = true, ModelExample.currentPeriodNum, streamListener)
-                    }
-                }
-                override fun onNothingSelected(p0: AdapterView<*>?) {
-                }
             }
             ivUnitBalance.setOnClickListener {
                 collapseItem(ivUnitBalance, llUnitBalance, !showBalance)
@@ -157,6 +132,13 @@ class UnitFragment(val streamListener: IStreamClickListener) : Fragment() {
             tr.addView(tv)
             table.addView(tr)
             addTableRow(tr, it.activities)
+        }
+    }
+
+    override fun onPeriodSpinnerChange(period: Int) {
+        currentUnit?.apply {
+            binding.rvUnitProducts.adapter = RVUnitBalanceAdapter(this, isFeeds = false, period, streamListener)
+            binding.rvUnitFeeds.adapter = RVUnitBalanceAdapter(this, isFeeds = true, period, streamListener)
         }
     }
 }

@@ -38,4 +38,5 @@
     <string name="purchases">Покупки</string>
     <string name="sails">Продажи</string>
     <string name="commerce">commerce</string>
+    <string name="measure_unit">Ед.изм.:</string>
 </resources>

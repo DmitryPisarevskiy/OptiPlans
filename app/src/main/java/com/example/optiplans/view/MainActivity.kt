@@ -11,12 +11,14 @@ import androidx.fragment.app.Fragment
 import com.example.optiplans.R
 import com.example.optiplans.databinding.ActivityMainBinding
 import com.example.optiplans.entities.ModelExample
+import com.example.optiplans.entities.QuantityMeasure
 import com.example.optiplans.entities.Stream
 import com.example.optiplans.entities.Unit
 
 class MainActivity : AppCompatActivity(), IStreamClickListener, IUnitClickListener, ICommerceSwitchListener {
     private lateinit var binding: ActivityMainBinding
-    private var spinnerListener: IPeriodSpinnerListener? = null
+    private var periodListener: IPeriodListener? = null
+    private var measureListener: IPeriodListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,22 +38,38 @@ class MainActivity : AppCompatActivity(), IStreamClickListener, IUnitClickListen
                 }
                 true
             }
-            val spinnerData = Array<String>(ModelExample.periods.size) {""}
+            val periodSpinnerData = Array<String>(ModelExample.periods.size) {""}
             var sum = 0
             for (i in ModelExample.periods.indices) {
-                spinnerData[i] = (i+1).toString() + " (" + ModelExample.periods[i] + " дней)"
+                periodSpinnerData[i] = "Период " + (i+1).toString() + " (" + ModelExample.periods[i] + " дней)"
                 sum+=ModelExample.periods[i]
             }
             val arrayAdapter: ArrayAdapter<String> = ArrayAdapter(this@MainActivity,
-                R.layout.spinner_item, spinnerData)
+                R.layout.spinner_item, periodSpinnerData)
             arrayAdapter.setDropDownViewResource(R.layout.spinner_item_drop_down)
             sPeriod.adapter = arrayAdapter
             sPeriod.setSelection(ModelExample.currentPeriodNum)
             sPeriod.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                     ModelExample.currentPeriodNum = p2
-                    if (spinnerListener!=null) {
-                        spinnerListener!!.onPeriodSpinnerChange(p2)
+                    if (periodListener!=null) {
+                        periodListener!!.onPeriodSpinnerChange(p2)
+                    }
+                }
+                override fun onNothingSelected(p0: AdapterView<*>?) {
+                }
+            }
+            val measureSpinnerData = arrayOf("т/д", "т")
+            val measureArrayAdapter: ArrayAdapter<String> = ArrayAdapter(this@MainActivity,
+                R.layout.spinner_item, measureSpinnerData)
+            measureArrayAdapter.setDropDownViewResource(R.layout.spinner_item_drop_down)
+            sMeasure.adapter = arrayAdapter
+            sMeasure.setSelection(0)
+            sMeasure.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                    ModelExample.measure = if (p2==0) {QuantityMeasure.PER_TIME_UNIT} else {QuantityMeasure.PER_PERIOD}
+                    if (measureListener!=null) {
+                        measureListener!!.onPeriodSpinnerChange(p2)
                     }
                 }
                 override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -66,8 +84,8 @@ class MainActivity : AppCompatActivity(), IStreamClickListener, IUnitClickListen
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fl_main, fragment)
         fragmentTransaction.commit()
-        if (fragment is IPeriodSpinnerListener) {
-            spinnerListener = fragment
+        if (fragment is IPeriodListener) {
+            periodListener = fragment
         }
     }
 

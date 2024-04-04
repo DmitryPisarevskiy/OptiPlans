@@ -7,4 +7,5 @@ open class Model(var name:String, var numOfPeriods:Int) {
     var quantityCoeff = Array<Int>(numOfPeriods) {0}
     var timeUnit: String = ""
     var quantityUnit: String = ""
+    var measure = QuantityMeasure.PER_TIME_UNIT
 }

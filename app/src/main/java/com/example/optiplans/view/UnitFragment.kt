@@ -17,7 +17,7 @@ import com.example.optiplans.entities.ModelExample
 import com.example.optiplans.entities.Unit
 import com.example.optiplans.view.rv.RVUnitBalanceAdapter
 
-class UnitFragment(val streamListener: IStreamClickListener) : Fragment(), IPeriodSpinnerListener {
+class UnitFragment(val streamListener: IStreamClickListener) : Fragment(), IPeriodListener {
     private lateinit var binding: FragmentUnitBinding
     var currentUnit: Unit? = null
     private var showBalance = true

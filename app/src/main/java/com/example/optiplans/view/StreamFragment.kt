@@ -17,7 +17,7 @@ import com.example.optiplans.entities.Stream
 import com.example.optiplans.view.rv.RVStreamProducedAdapter
 import com.example.optiplans.view.rv.RVStreamUsedAdapter
 
-class StreamFragment(val unitListener: IUnitClickListener, val commerceListener: ICommerceSwitchListener) : Fragment(), IPeriodSpinnerListener {
+class StreamFragment(val unitListener: IUnitClickListener, val commerceListener: ICommerceSwitchListener) : Fragment(), IPeriodListener {
     var currentStream: Stream? = null
     lateinit var binding: FragmentStreamBinding
     private var showSails: Boolean = true

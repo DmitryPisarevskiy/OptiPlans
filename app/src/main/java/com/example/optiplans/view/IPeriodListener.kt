@@ -1,5 +1,5 @@
 package com.example.optiplans.view
 
-interface IPeriodSpinnerListener {
+interface IPeriodListener {
     fun onPeriodSpinnerChange(period: Int)
 }

@@ -6,11 +6,20 @@ import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.RecyclerView
 import com.example.optiplans.databinding.RvStreamProducedItemBinding
+import com.example.optiplans.entities.ModelExample
+import com.example.optiplans.entities.QuantityMeasure
 import com.example.optiplans.entities.Stream
+import com.example.optiplans.entities.getPeriodValue
 import com.example.optiplans.view.ICommerceSwitchListener
 import com.example.optiplans.view.IUnitClickListener
 
-class RVStreamProducedAdapter (private val stream: Stream, val periodNum: Int, val unitListener: IUnitClickListener, val commerceListener:ICommerceSwitchListener): RecyclerView.Adapter<RVStreamProducedAdapter.StreamPoducedViewHolder>() {
+class RVStreamProducedAdapter (
+    private val stream: Stream,
+    val periodNum: Int,
+    val measure: QuantityMeasure,
+    val unitListener: IUnitClickListener,
+    val commerceListener:ICommerceSwitchListener
+): RecyclerView.Adapter<RVStreamProducedAdapter.StreamPoducedViewHolder>() {
     class StreamPoducedViewHolder (val binding: RvStreamProducedItemBinding): RecyclerView.ViewHolder(binding.root) {
     }
 
@@ -31,14 +40,16 @@ class RVStreamProducedAdapter (private val stream: Stream, val periodNum: Int, v
             val index = if (stream.bought) {position-1} else {position}
             if ((position == 0) && (stream.bought)) {
                 tvStreamProducedItem.text = "Покупки"
-                tvStreamProducedValue.text = stream.purchases[periodNum].toString()
+                tvStreamProducedValue.text =
+                    "%.1f".format(getPeriodValue(stream.purchases[periodNum], ModelExample, periodNum))
                 uvStreamProduced.visibility = View.GONE
                 root.setOnClickListener {
                     commerceListener.onCommerceSwitchClick(true)
                 }
             } else {
                 tvStreamProducedItem.text = stream.producingUnits.entries.elementAt(index).key.name
-                tvStreamProducedValue.text = stream.producingUnits.entries.elementAt(index).value[periodNum].toString()
+                tvStreamProducedValue.text =
+                    "%.1f".format(getPeriodValue(stream.producingUnits.entries.elementAt(index).value[periodNum],ModelExample, periodNum))
                 root.setOnClickListener {
                     unitListener.onUnitClick(stream.producingUnits.entries.elementAt(index).key)
                 }

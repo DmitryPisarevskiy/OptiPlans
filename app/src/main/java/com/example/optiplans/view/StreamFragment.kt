@@ -13,11 +13,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.optiplans.R
 import com.example.optiplans.databinding.FragmentStreamBinding
 import com.example.optiplans.entities.ModelExample
+import com.example.optiplans.entities.QuantityMeasure
 import com.example.optiplans.entities.Stream
 import com.example.optiplans.view.rv.RVStreamProducedAdapter
 import com.example.optiplans.view.rv.RVStreamUsedAdapter
 
-class StreamFragment(val unitListener: IUnitClickListener, val commerceListener: ICommerceSwitchListener) : Fragment(), IPeriodListener {
+class StreamFragment(val unitListener: IUnitClickListener, val commerceListener: ICommerceSwitchListener) : Fragment(), IPeriodListener, IMeasureListener {
     var currentStream: Stream? = null
     lateinit var binding: FragmentStreamBinding
     private var showSails: Boolean = true
@@ -80,11 +81,15 @@ class StreamFragment(val unitListener: IUnitClickListener, val commerceListener:
             }
             currentStream?.apply {
                 rvStreamProduced.layoutManager = LinearLayoutManager(activity)
-                rvStreamProduced.adapter =
-                    RVStreamProducedAdapter(this, ModelExample.currentPeriodNum, unitListener,commerceListener)
+                rvStreamProduced.adapter = RVStreamProducedAdapter(
+                    this,
+                    ModelExample.currentPeriodNum,
+                    ModelExample.measure,
+                    unitListener,
+                    commerceListener
+                )
                 rvStreamUsed.layoutManager = LinearLayoutManager(activity)
-                rvStreamUsed.adapter =
-                    RVStreamUsedAdapter(this, ModelExample.currentPeriodNum, unitListener,commerceListener)
+                rvStreamUsed.adapter = RVStreamUsedAdapter(this, ModelExample.currentPeriodNum, unitListener,commerceListener)
             }
             if (!showPurchases) {
                 collapseItem(ivStreamPurchasesTop,hsvStreamPurchases,showPurchases)
@@ -127,12 +132,31 @@ class StreamFragment(val unitListener: IUnitClickListener, val commerceListener:
             binding.rvStreamProduced.adapter = RVStreamProducedAdapter(
                 this,
                 period,
+                ModelExample.measure,
                 unitListener,
-                commerceListener
+                commerceListener,
             )
             binding.rvStreamUsed.adapter = RVStreamUsedAdapter(
                 this,
                 period,
+                unitListener,
+                commerceListener
+            )
+        }
+    }
+
+    override fun onMeasureSpinnerChange(measure: QuantityMeasure) {
+        currentStream?.apply {
+            binding.rvStreamProduced.adapter = RVStreamProducedAdapter(
+                this,
+                ModelExample.currentPeriodNum,
+                measure,
+                unitListener,
+                commerceListener,
+            )
+            binding.rvStreamUsed.adapter = RVStreamUsedAdapter(
+                this,
+                ModelExample.currentPeriodNum,
                 unitListener,
                 commerceListener
             )

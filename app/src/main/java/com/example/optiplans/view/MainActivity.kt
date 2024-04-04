@@ -18,7 +18,7 @@ import com.example.optiplans.entities.Unit
 class MainActivity : AppCompatActivity(), IStreamClickListener, IUnitClickListener, ICommerceSwitchListener {
     private lateinit var binding: ActivityMainBinding
     private var periodListener: IPeriodListener? = null
-    private var measureListener: IPeriodListener? = null
+    private var measureListener: IMeasureListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,17 +59,22 @@ class MainActivity : AppCompatActivity(), IStreamClickListener, IUnitClickListen
                 override fun onNothingSelected(p0: AdapterView<*>?) {
                 }
             }
-            val measureSpinnerData = arrayOf("т/д", "т")
+            val measureSpinnerData = arrayOf(ModelExample.quantityUnit + "/" + ModelExample.timeUnit, ModelExample.quantityUnit)
             val measureArrayAdapter: ArrayAdapter<String> = ArrayAdapter(this@MainActivity,
                 R.layout.spinner_item, measureSpinnerData)
             measureArrayAdapter.setDropDownViewResource(R.layout.spinner_item_drop_down)
-            sMeasure.adapter = arrayAdapter
-            sMeasure.setSelection(0)
+            sMeasure.adapter = measureArrayAdapter
+            if (ModelExample.measure==QuantityMeasure.PER_TIME_UNIT) {
+                sMeasure.setSelection(0)
+            } else {
+                sMeasure.setSelection(1)
+            }
+
             sMeasure.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                     ModelExample.measure = if (p2==0) {QuantityMeasure.PER_TIME_UNIT} else {QuantityMeasure.PER_PERIOD}
                     if (measureListener!=null) {
-                        measureListener!!.onPeriodSpinnerChange(p2)
+                        measureListener!!.onMeasureSpinnerChange(ModelExample.measure)
                     }
                 }
                 override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -86,6 +91,9 @@ class MainActivity : AppCompatActivity(), IStreamClickListener, IUnitClickListen
         fragmentTransaction.commit()
         if (fragment is IPeriodListener) {
             periodListener = fragment
+        }
+        if (fragment is IMeasureListener) {
+            measureListener = fragment
         }
     }
 

@@ -6,7 +6,9 @@ import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.RecyclerView
 import com.example.optiplans.databinding.RvStreamUsedItemBinding
+import com.example.optiplans.entities.ModelExample
 import com.example.optiplans.entities.Stream
+import com.example.optiplans.entities.getPeriodValue
 import com.example.optiplans.view.ICommerceSwitchListener
 import com.example.optiplans.view.IUnitClickListener
 
@@ -31,14 +33,16 @@ class RVStreamUsedAdapter (private val stream: Stream, var periodNum: Int, val u
             val index = if (stream.sold) {position-1} else {position}
             if ((stream.sold) && (position==0)) {
                 tvStreamUsedItem.text = "Продажи"
-                tvStreamUsedValue.text = stream.sails[periodNum].toString()
+                tvStreamUsedValue.text =
+                    "%.1f".format(getPeriodValue(stream.sails[periodNum], ModelExample, periodNum))
                 uvStreamUsed.visibility = View.GONE
                 root.setOnClickListener {
                     commerceListener.onCommerceSwitchClick(false)
                 }
             } else {
                 tvStreamUsedItem.text =stream.spendingUnits.entries.elementAt(index).key.name
-                tvStreamUsedValue.text =stream.spendingUnits.entries.elementAt(index).value[periodNum].toString()
+                tvStreamUsedValue.text =
+                    "%.1f".format(getPeriodValue(stream.spendingUnits.entries.elementAt(index).value[periodNum],ModelExample, periodNum))
                 root.setOnClickListener {
                     unitListener.onUnitClick(stream.spendingUnits.entries.elementAt(index).key)
                 }

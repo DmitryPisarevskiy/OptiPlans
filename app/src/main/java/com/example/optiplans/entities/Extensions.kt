@@ -64,3 +64,23 @@ fun expand(v: View) {
     a.duration = 500
     v.startAnimation(a)
 }
+
+fun getPeriodValues(arr: Array<Float>, model: Model): Array<Float> {
+    return if (model.measure == QuantityMeasure.PER_TIME_UNIT) {
+        arr
+    } else {
+        val arrFinal = Array<Float> (arr.size) {0f}
+        for (i in arr.indices) {
+            arrFinal[i]=arr[i]*model.periods[i]
+        }
+        arrFinal
+    }
+}
+
+fun getPeriodValue(value: Float, model: Model, periodNum: Int): Float {
+    return if (model.measure == QuantityMeasure.PER_TIME_UNIT) {
+        value
+    } else {
+        value * model.periods[periodNum]
+    }
+}

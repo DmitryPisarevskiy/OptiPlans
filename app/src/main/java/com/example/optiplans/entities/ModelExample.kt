@@ -2,7 +2,7 @@ package com.example.optiplans.entities
 
 import android.graphics.Color
 
-object ModelExample : Model("ГПНС. Февраль" ,3) {
+object ModelExample : Model("ГПНС. Февраль" ,3, "д", "т") {
     var currentStream: Stream? = null
     var currentUnit: Unit? = null
     var currentPeriodNum = 0
@@ -59,37 +59,37 @@ object ModelExample : Model("ГПНС. Февраль" ,3) {
         val prlColumn = Column("Переработка пропилена", "PRL", 3, iaaUnit)
 
         // Column coefficients
-        etnColumn.strAndCoeffs.put(ethaneStream, 1f)
-        etnColumn.strAndCoeffs.put(ethyleneStream, -0.8f)
-        etnColumn.strAndCoeffs.put(propyleneStream, -0.1f)
-        etnColumn.strAndCoeffs.put(tspStream, -0.1f)
-        sluColumn.strAndCoeffs.put(lpgStream, 1f)
-        sluColumn.strAndCoeffs.put(ethyleneStream, -0.7f)
-        sluColumn.strAndCoeffs.put(propyleneStream, -0.15f)
-        sluColumn.strAndCoeffs.put(tspStream, -0.15f)
-        nafColumn.strAndCoeffs.put(naphtaStream, 1f)
-        nafColumn.strAndCoeffs.put(ethyleneStream, -0.6f)
-        nafColumn.strAndCoeffs.put(propyleneStream, -0.2f)
-        nafColumn.strAndCoeffs.put(tspStream, -0.2f)
-        etyColumn.strAndCoeffs.put(ethyleneStream, 1.0f)
-        etyColumn.strAndCoeffs.put(hdpeStream, -1.0f)
-        prlColumn.strAndCoeffs.put(propyleneStream, 1.0f)
-        prlColumn.strAndCoeffs.put(waterStream, 0.85f)
-        prlColumn.strAndCoeffs.put(iaaStream, -1.85f)
+        etnColumn.strAndCoeffs[ethaneStream] = 1f
+        etnColumn.strAndCoeffs[ethyleneStream] = -0.8f
+        etnColumn.strAndCoeffs[propyleneStream] = -0.1f
+        etnColumn.strAndCoeffs[tspStream] = -0.1f
+        sluColumn.strAndCoeffs[lpgStream] = 1f
+        sluColumn.strAndCoeffs[ethyleneStream] = -0.7f
+        sluColumn.strAndCoeffs[propyleneStream] = -0.15f
+        sluColumn.strAndCoeffs[tspStream] = -0.15f
+        nafColumn.strAndCoeffs[naphtaStream] = 1f
+        nafColumn.strAndCoeffs[ethyleneStream] = -0.6f
+        nafColumn.strAndCoeffs[propyleneStream] = -0.2f
+        nafColumn.strAndCoeffs[tspStream] = -0.2f
+        etyColumn.strAndCoeffs[ethyleneStream] = 1.0f
+        etyColumn.strAndCoeffs[hdpeStream] = -1.0f
+        prlColumn.strAndCoeffs[propyleneStream] = 1.0f
+        prlColumn.strAndCoeffs[waterStream] = 0.85f
+        prlColumn.strAndCoeffs[iaaStream] = -1.85f
 
         // Capacities creation
         val epEtyCap = Capacity("ЭП-355 по этилену", "ETY", 3)
         val epTotCap = Capacity("ЭП-355 по сырью", "EPT",3)
         val hdpeCap = Capacity("ПЭНД", "PND",3)
         val iaaCap = Capacity("ЛАК", "LAK",3)
-        epEtyCap.regimesAndCoeffs.put(etnColumn,0.8f)
-        epEtyCap.regimesAndCoeffs.put(sluColumn,0.7f)
-        epEtyCap.regimesAndCoeffs.put(nafColumn,0.6f)
-        epTotCap.regimesAndCoeffs.put(etnColumn,1.0f)
-        epTotCap.regimesAndCoeffs.put(sluColumn,1.0f)
-        epTotCap.regimesAndCoeffs.put(nafColumn,1.0f)
-        hdpeCap.regimesAndCoeffs.put(etyColumn,1.0f)
-        iaaCap.regimesAndCoeffs.put(prlColumn,1.85f)
+        epEtyCap.regimesAndCoeffs[etnColumn] = 0.8f
+        epEtyCap.regimesAndCoeffs[sluColumn] = 0.7f
+        epEtyCap.regimesAndCoeffs[nafColumn] = 0.6f
+        epTotCap.regimesAndCoeffs[etnColumn] = 1.0f
+        epTotCap.regimesAndCoeffs[sluColumn] = 1.0f
+        epTotCap.regimesAndCoeffs[nafColumn] = 1.0f
+        hdpeCap.regimesAndCoeffs[etyColumn] = 1.0f
+        iaaCap.regimesAndCoeffs[prlColumn] = 1.85f
 
         // Adding capacities to units
         epUnit.capacities.add(epEtyCap)
@@ -135,9 +135,6 @@ object ModelExample : Model("ГПНС. Февраль" ,3) {
         //Setting current Stream and Unit
         currentUnit = epUnit
         currentStream = ethyleneStream
-        quantityMeasure = QuantityMeasure.PER_TIME_UNIT
-        quantityCoeff = Array<Int>(numOfPeriods) {1}
-        timeUnit = "д"
-        quantityUnit = "т"
+        measure = QuantityMeasure.PER_TIME_UNIT
     }
 }

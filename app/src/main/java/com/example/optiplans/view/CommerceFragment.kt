@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import com.example.optiplans.R
 import com.example.optiplans.databinding.FragmentCommerceBinding
 import com.example.optiplans.entities.Model
+import com.example.optiplans.entities.ModelExample
 import com.example.optiplans.entities.Stream
 
 class CommerceFragment(val model: Model, var showPurchases:Boolean, val switchListener: ICommerceSwitchListener, val streamListener: IStreamClickListener): Fragment() {
@@ -53,20 +54,30 @@ class CommerceFragment(val model: Model, var showPurchases:Boolean, val switchLi
                     tvCommerceName.setOnClickListener {
                         streamListener.onStreamClick(s)
                     }
+                    val trCommercePrice = TableRow(requireContext())
+                    val tvCommercePrice = TextView(requireContext())
+                    tvCommercePrice.text = getString(R.string.price)
+                    tvCommercePrice.setTextAppearance(R.style.TableText)
+                    trCommercePrice.addView(tvCommercePrice)
+                    tlCommerce.addView(trCommercePrice)
+                    val priceValues = if (showPurchases) {it.costs} else {it.prices}
+                    addTableRow(trCommercePrice, priceValues, ModelExample)
                     val trCommerceMin = TableRow(requireContext())
                     val tvCommerceMin = TextView(requireContext())
                     tvCommerceMin.text = getString(R.string.min)
                     tvCommerceMin.setTextAppearance(R.style.TableText)
                     trCommerceMin.addView(tvCommerceMin)
                     tlCommerce.addView(trCommerceMin)
-                    addTableRow(trCommerceMin, if (showPurchases) {it.minBoundsPurchases} else {it.minBoundsSales})
+                    val minValues = if (showPurchases) {it.minBoundsPurchases} else {it.minBoundsSales}
+                    addTableRow(trCommerceMin, minValues, ModelExample)
                     val trCommerceMax = TableRow(context)
                     val tvCommerceMax = TextView(context)
                     tvCommerceMax.text = getString(R.string.max)
                     tvCommerceMax.setTextAppearance(R.style.TableText)
                     trCommerceMax.addView(tvCommerceMax)
                     tlCommerce.addView(trCommerceMax)
-                    addTableRow(trCommerceMax, if (showPurchases) {it.maxBoundsPurchases} else {it.maxBoundsSales})
+                    val maxValues = if (showPurchases) {it.maxBoundsPurchases} else {it.maxBoundsSales}
+                    addTableRow(trCommerceMax, maxValues, ModelExample)
                     val trCommerceSolution = TableRow(context)
                     val tvCommerceSolution = TextView(context)
                     tvCommerceSolution.text = getString(R.string.solution)
@@ -74,7 +85,8 @@ class CommerceFragment(val model: Model, var showPurchases:Boolean, val switchLi
                     trCommerceSolution.addView(tvCommerceSolution)
                     trCommerceSolution.setBackgroundColor(resources.getColor(R.color.light_gray))
                     tlCommerce.addView(trCommerceSolution)
-                    addTableRow(trCommerceSolution, if (showPurchases) {it.purchases} else {it.sails})
+                    val solValues = if (showPurchases) {it.purchases} else {it.sails}
+                    addTableRow(trCommerceSolution, solValues, ModelExample)
                     val fl = FrameLayout(requireContext())
                     fl.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1)
                     fl.setBackgroundColor(resources.getColor(R.color.light_blue))

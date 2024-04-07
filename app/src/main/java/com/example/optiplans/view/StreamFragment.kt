@@ -13,12 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.optiplans.R
 import com.example.optiplans.databinding.FragmentStreamBinding
 import com.example.optiplans.entities.ModelExample
-import com.example.optiplans.entities.QuantityMeasure
 import com.example.optiplans.entities.Stream
 import com.example.optiplans.view.rv.RVStreamProducedAdapter
 import com.example.optiplans.view.rv.RVStreamUsedAdapter
 
-class StreamFragment(val unitListener: IUnitClickListener, val commerceListener: ICommerceSwitchListener) : Fragment(), IPeriodListener, IMeasureListener {
+class StreamFragment(val unitListener: IUnitClickListener, val commerceListener: ICommerceSwitchListener) : Fragment(), IPeriodListener {
     var currentStream: Stream? = null
     lateinit var binding: FragmentStreamBinding
     private var showSails: Boolean = true
@@ -51,33 +50,31 @@ class StreamFragment(val unitListener: IUnitClickListener, val commerceListener:
             iMax--
             for (i in 0..iMax) {
                 val tvPeriod = TextView(context)
-                tvPeriod.text =
-                    "Период " + (i + 1).toString() + System.lineSeparator() + ModelExample.periods[i].toString() + " дней"
+                "Период ${(i + 1)}${System.lineSeparator()}${ModelExample.periods[i]} дней".also { tvPeriod.text = it }
                 tvPeriod.gravity = Gravity.CENTER
                 tvPeriod.setTextAppearance(R.style.TableText)
                 trStreamSailsPeriod.addView(tvPeriod)
             }
-            currentStream?.minBoundsSales?.apply { addTableRow(trStreamSailsMin, this) }
-            currentStream?.maxBoundsSales?.apply { addTableRow(trStreamSailsMax, this) }
-            currentStream?.prices?.apply { addTableRow(trStreamSailsPrice, this) }
-            currentStream?.sails?.apply { addTableRow(trStreamSailsSolution, this) }
+            currentStream?.minBoundsSales?.apply { addTableRow(trStreamSailsMin, this, ModelExample) }
+            currentStream?.maxBoundsSales?.apply { addTableRow(trStreamSailsMax, this, ModelExample) }
+            currentStream?.prices?.apply { addTableRow(trStreamSailsPrice, this, ModelExample, true) }
+            currentStream?.sails?.apply { addTableRow(trStreamSailsSolution, this, ModelExample) }
             for (i in 0..iMax) {
                 val tvPeriod = TextView(context)
-                tvPeriod.text =
-                    "Период " + (i + 1).toString() + System.lineSeparator() + ModelExample.periods[i].toString() + " дней"
+                "Период ${(i + 1)}${System.lineSeparator()}${ModelExample.periods[i]} дней".also { tvPeriod.text = it }
                 tvPeriod.gravity = Gravity.CENTER
                 tvPeriod.setTextAppearance(R.style.TableText)
                 trStreamPurchasesPeriod.addView(tvPeriod)
             }
             currentStream?.minBoundsPurchases?.apply {
-                addTableRow(trStreamPurchasesMin,this)
+                addTableRow(trStreamPurchasesMin,this, ModelExample)
             }
             currentStream?.maxBoundsPurchases?.apply {
-                addTableRow(trStreamPurchasesMax,this)
+                addTableRow(trStreamPurchasesMax,this, ModelExample)
             }
-            currentStream?.costs?.apply { addTableRow(trStreamPurchasesPrice, this) }
+            currentStream?.costs?.apply { addTableRow(trStreamPurchasesPrice, this, ModelExample, true) }
             currentStream?.purchases?.apply {
-                addTableRow(trStreamPurchasesSolution,this)
+                addTableRow(trStreamPurchasesSolution,this, ModelExample)
             }
             currentStream?.apply {
                 rvStreamProduced.layoutManager = LinearLayoutManager(activity)
@@ -144,23 +141,4 @@ class StreamFragment(val unitListener: IUnitClickListener, val commerceListener:
             )
         }
     }
-
-    override fun onMeasureSpinnerChange(measure: QuantityMeasure) {
-        currentStream?.apply {
-            binding.rvStreamProduced.adapter = RVStreamProducedAdapter(
-                this,
-                ModelExample.currentPeriodNum,
-                measure,
-                unitListener,
-                commerceListener,
-            )
-            binding.rvStreamUsed.adapter = RVStreamUsedAdapter(
-                this,
-                ModelExample.currentPeriodNum,
-                unitListener,
-                commerceListener
-            )
-        }
-    }
-
 }

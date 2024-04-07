@@ -18,7 +18,7 @@ import com.example.optiplans.entities.Unit
 class MainActivity : AppCompatActivity(), IStreamClickListener, IUnitClickListener, ICommerceSwitchListener {
     private lateinit var binding: ActivityMainBinding
     private var periodListener: IPeriodListener? = null
-    private var measureListener: IMeasureListener? = null
+    private var currentFragment: Fragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,8 +73,11 @@ class MainActivity : AppCompatActivity(), IStreamClickListener, IUnitClickListen
             sMeasure.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                     ModelExample.measure = if (p2==0) {QuantityMeasure.PER_TIME_UNIT} else {QuantityMeasure.PER_PERIOD}
-                    if (measureListener!=null) {
-                        measureListener!!.onMeasureSpinnerChange(ModelExample.measure)
+                    when (currentFragment) {
+                        is CommerceFragment -> replaceFragment(CommerceFragment(ModelExample, true,this@MainActivity, this@MainActivity))
+                        is TableFragment -> replaceFragment(TableFragment(this@MainActivity))
+                        is UnitFragment -> replaceFragment(UnitFragment(this@MainActivity))
+                        is StreamFragment -> replaceFragment(StreamFragment(this@MainActivity,this@MainActivity))
                     }
                 }
                 override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -92,9 +95,7 @@ class MainActivity : AppCompatActivity(), IStreamClickListener, IUnitClickListen
         if (fragment is IPeriodListener) {
             periodListener = fragment
         }
-        if (fragment is IMeasureListener) {
-            measureListener = fragment
-        }
+        currentFragment = fragment
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

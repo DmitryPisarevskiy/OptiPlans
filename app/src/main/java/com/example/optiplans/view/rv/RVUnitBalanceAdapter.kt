@@ -5,7 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.optiplans.databinding.RvUnitFeedItemBinding
 import com.example.optiplans.databinding.RvUnitProductItemBinding
+import com.example.optiplans.entities.ModelExample
 import com.example.optiplans.entities.Unit
+import com.example.optiplans.entities.getPeriodValue
 import com.example.optiplans.view.IStreamClickListener
 
 class RVUnitBalanceAdapter(val unit: Unit, val isFeeds: Boolean, val periodNum: Int, val streamListener: IStreamClickListener): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -15,7 +17,8 @@ class RVUnitBalanceAdapter(val unit: Unit, val isFeeds: Boolean, val periodNum: 
                 val data = unit.feeds
                 svUnitBalanceItem.painting(data.entries.elementAt(position).key.color)
                 tvUnitBalanceItem.text = data.entries.elementAt(position).key.name
-                tvUnitBalanceValue.text = data.entries.elementAt(position).value[periodNum].toString()
+                tvUnitBalanceValue.text =
+                    "%.1f".format(getPeriodValue(data.entries.elementAt(position).value[periodNum], ModelExample, periodNum))
                 root.setOnClickListener {
                     streamListener.onStreamClick(unit.feeds.entries.elementAt(position).key)
                 }
@@ -29,7 +32,8 @@ class RVUnitBalanceAdapter(val unit: Unit, val isFeeds: Boolean, val periodNum: 
                 val data = unit.products
                 svUnitBalanceItem.painting(data.entries.elementAt(position).key.color)
                 tvUnitBalanceItem.text = data.entries.elementAt(position).key.name
-                tvUnitBalanceValue.text = (-1*data.entries.elementAt(position).value[periodNum]).toString()
+                tvUnitBalanceValue.text =
+                    "%.1f".format(getPeriodValue((-1*data.entries.elementAt(position).value[periodNum]), ModelExample, periodNum))
                 root.setOnClickListener {
                     streamListener.onStreamClick(unit.products.entries.elementAt(position).key)
                 }

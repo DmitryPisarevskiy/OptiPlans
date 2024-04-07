@@ -103,14 +103,14 @@ class UnitFragment(val streamListener: IStreamClickListener) : Fragment(), IPeri
             tvUnitCapMin.setTextAppearance(R.style.TableText)
             trUnitCapMin.addView(tvUnitCapMin)
             table.addView(trUnitCapMin)
-            addTableRow(trUnitCapMin, it.minBounds)
+            addTableRow(trUnitCapMin, it.minBounds, ModelExample)
             val trUnitCapMax = TableRow(requireContext())
             val tvUnitCapMax = TextView(requireContext())
             tvUnitCapMax.text = getString(R.string.max)
             tvUnitCapMax.setTextAppearance(R.style.TableText)
             trUnitCapMax.addView(tvUnitCapMax)
             table.addView(trUnitCapMax)
-            addTableRow(trUnitCapMax, it.maxBounds)
+            addTableRow(trUnitCapMax, it.maxBounds, ModelExample)
             val trUnitCapSolution = TableRow(requireContext())
             val tvUnitCapSolution = TextView(requireContext())
             tvUnitCapSolution.text = getString(R.string.solution)
@@ -118,7 +118,7 @@ class UnitFragment(val streamListener: IStreamClickListener) : Fragment(), IPeri
             trUnitCapSolution.addView(tvUnitCapSolution)
             trUnitCapSolution.setBackgroundColor(resources.getColor(R.color.light_gray))
             table.addView(trUnitCapSolution)
-            addTableRow(trUnitCapSolution, it.activities)
+            addTableRow(trUnitCapSolution, it.activities, ModelExample)
         }
     }
 
@@ -131,7 +131,7 @@ class UnitFragment(val streamListener: IStreamClickListener) : Fragment(), IPeri
             tv.setTextAppearance(R.style.TableCaption)
             tr.addView(tv)
             table.addView(tr)
-            addTableRow(tr, it.activities)
+            addTableRow(tr, it.activities, ModelExample)
         }
     }
 

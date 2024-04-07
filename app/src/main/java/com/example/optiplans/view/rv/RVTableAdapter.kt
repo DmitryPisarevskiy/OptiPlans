@@ -2,20 +2,17 @@ package com.example.optiplans.view.rv
 
 import android.os.Build
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.view.ViewGroup.LayoutParams
 import android.widget.TableRow
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.optiplans.R
 import com.example.optiplans.databinding.RvTableItemBinding
 import com.example.optiplans.entities.Model
+import com.example.optiplans.entities.ModelExample
 import com.example.optiplans.view.IUnitClickListener
-import com.example.optiplans.view.StreamView
 import com.example.optiplans.view.addItemTablePeriodRow
 import com.example.optiplans.view.addItemTableRow
 
@@ -52,7 +49,7 @@ class RVTableAdapter(val model: Model, val unitListener: IUnitClickListener) : R
                 tv.text = it.name
                 tv.setTextAppearance(R.style.ItemText)
                 tr.addView(tv)
-                addItemTableRow(tr,it.activities)
+                addItemTableRow(tr,it.activities, ModelExample)
                 tlTableItemCaps.addView(tr)
             }
         }
